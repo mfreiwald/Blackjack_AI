@@ -1,0 +1,122 @@
+<?xml version="1.0"?> 
+
+<project name="blackjack" default="test" basedir=".">
+
+  <property name="target.classes"         value="classes" />
+  <property name="target.dist.doc"        value="doc" />
+  <property name="target.javadoc"         value="${target.dist.doc}/javadoc" />
+  <property name="target.java2html"       value="${target.dist.doc}/java2html" />
+	                                      <!--
+	                                      if you change the jar name you need
+	                                      to change it in:
+	                                      * the .sh and .bat files
+	                                      * the documentation (incl. links)
+	                                      -->
+  <property name="jar_name"               value="montejack-v1.0.1.jar" />
+	
+  <target name="compile.prepare">
+    <mkdir dir="${target.classes}" />
+  </target>
+
+  <target name="compile.development"
+          depends="compile.prepare"
+  	      description="compiles the source for development use">
+    <javac destdir="${target.classes}"
+           debug="on"
+           classpath="lib">
+      <src path="src" />
+      <src path="test" />
+      <classpath>
+        <fileset dir="lib">
+      	  <include name="*.jar" />
+        </fileset>
+      </classpath>
+    </javac>
+  </target>
+
+  <target name="compile.distribute"
+          depends="compile.prepare"
+  	      description="compiles the source for distribution">
+    <javac destdir="${target.classes}"
+           debug="off"
+    	   optimize="on"
+           classpath="lib">
+      <src path="src" />
+      <classpath>
+        <fileset dir="lib">
+      	  <include name="*.jar" />
+        </fileset>
+      </classpath>
+    </javac>
+  </target>
+
+  <target name="clean"
+          description="cleans the build directory">
+  	<delete dir="${target.classes}" />
+  	<delete dir="${target.javadoc}" />
+  	<delete dir="${target.java2html}" />
+  	<delete file="${jar_name}" />
+  </target>
+  
+  <target name="test"
+  	      depends="compile.development"
+          description="runs the unit tests">
+
+    <junit haltonfailure="true"
+           filtertrace="true">
+      <test name="garrettsmith.AllTests" />
+      <!-- uncomment to see summary or output
+      <formatter type="plain" usefile="false" />
+      -->
+      <classpath>
+        <fileset dir="lib">
+          <include name="*.jar"/>
+        </fileset>
+      	<dirset dir="${target.classes}" />
+      </classpath>
+    </junit>
+      	
+  </target>
+
+  <target name="distribute"
+	      depends="compile.distribute,javadoc,java2html"
+  	      description="performs a distribute build; builds site and distribution">
+    <jar basedir="${target.classes}"
+         jarfile="${jar_name}"
+         compress="yes" />
+  	<delete dir="${target.classes}" />
+  </target>
+
+  <target name="javadoc"
+  	      description="builds the Javadoc">
+    <mkdir dir="${target.javadoc}" />
+    <javadoc sourcepath="src"
+             destdir="${target.javadoc}"
+             version="true"
+             author="true"
+             use="true"
+             serialwarn="false"
+             windowtitle="Monte Jack Blackjack API"
+             doctitle="Monte Jack Blackjack API">
+	      <packageset dir="src">
+	        <include name="garrettsmith/blackjack/**" />
+	        <include name="garrettsmith/blackjack/refimpl/*" />
+	        <include name="garrettsmith/playingcards/**" />
+	      	<exclude name="garrettsmith/blackjack/autoplayer/**" />
+	      </packageset>
+      <bottom><![CDATA[<center><i>Copyright 2001-5 Garrett Smith.  Use is subject to license terms.</i></center>]]></bottom>
+    </javadoc>
+  </target>
+
+  <target name="java2html"
+  	      description="builds the HTML source">
+    <mkdir dir="${target.java2html}" />
+    <taskdef name="java2html"
+             classname="de.java2html.anttasks.Java2HtmlTask"
+             classpath="${env.ANT_HOME}/lib/java2html.jar" />
+  	<java2html srcdir="src"
+               destdir="${target.java2html}"
+               includes="**/*.java" />
+  </target>
+
+</project>

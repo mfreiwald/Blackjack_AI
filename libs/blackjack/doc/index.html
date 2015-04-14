@@ -1,0 +1,204 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+<!-- $Id: index.html,v 1.11 2005/06/15 03:13:39 gsmith Exp $ -->
+<html>
+  <head>
+    <title>Monte Jack -- A Blackjack Model</title>
+    <link rel="stylesheet"
+          type="text/css"
+          href="/css/main.css">
+    <meta name="description"
+          content="Monte Jack -- A Blackjack Model">
+    <meta http-equiv="Content-Type"
+          content="text/html; charset=iso-8859-1">
+	<style type="text/css">
+	    body {
+	        background-color: white;
+	        margin: 10px 10px 10px 10px; }
+	    H1 {
+	        color: #31639C;
+	        font-size: 35px; 
+	        font-weight: bolder;
+	        margin: 50px 10px 0px 0px; }
+	    H2 {
+	        color: #31639C;
+	        font-size: 20px;
+	        font-weight: bolder;
+	        margin: 30px 10px 0px 0px; }
+	    H3 {
+	        color: #31639C;
+	        font-size: 15px;
+	        margin: 30px 10px 0px 0px; }
+	    a:link {
+	        color: #31639C;
+	        text-decoration: underline }
+	    a:visited {
+	        color: #31639C;
+	        text-decoration: underline }
+	    a:hover {
+	        color: #FFCC00;
+	        text-decoration: underline }
+	    p {
+	        color: #333333; }
+	    li {
+	        color: #333333; }
+	    #content {
+	        color: #333333; }
+		    .custom_header1 {
+		         color: #31639C;
+			 font-size: 15px;
+			 font-weight: bolder;
+			 margin: 10px 10px 0px 0px; }
+	</style>
+  </head>
+  <body>
+
+<h1>Monte Jack</h1> 
+
+<br />
+
+<h3>A Java API for playing Blackjack</h3>
+
+<br />
+
+<hr noshade="noshade" />
+
+<div id="content" />
+
+<p>
+This set of classes provides free and open access to:
+
+<ul>
+<li>
+Classes representing playing cards, including basic abstractions for non-standard decks
+</li><li>
+Detailed logic to play Blackjack
+</li><li>
+A simple reference implementation that allows you to exercise these classes via the console window
+</li>
+</ul>
+</p>
+
+<p>
+Unlike numerous Blackjack APIs, this implementation provides for playing using virtually all 
+variations of basic Blackjack, including changing:
+
+<ul>
+<li>
+If the dealer stands or hits on soft 17s
+</li><li>
+The number of decks in the shoe
+</li><li>
+Whether doubling down after split is allowed
+</li><li>
+Whether doubling down is restricted to hands of 9s, 10s, and 11s
+</li><li>
+The Blackjack payoff multiplier
+</li><li>
+If early surrender is allowed
+</li><li>
+If late surrender is allowed
+</li><li>
+Whether double after split is allowed
+</li><li>
+If resplitting aces is allowed
+</li><li>
+The maximum number of splits
+</li>
+</ul>
+
+... as well as a few other options.
+</p><p>
+I originally wrote this library to study the mathematics of Blackjack by performing Monte Carlo simulations 
+on various playing strategies.
+</p>
+
+<h3>Downloading</h3>
+
+<p>
+You can download Monte Jack version 1.0.1, including source, in 
+<a href="http://garrettsmith.net/montejack/montejack-1.0.1.tar.gz">tarball</a>
+and <a href="http://garrettsmith.net/montejack/montejack-1.0.1.zip">ZIP</a>
+formats from 
+<a href="http://garrettsmith.net">garrettsmith.net</a>.
+</p>
+
+<h3>Using Monte Jack</h3>
+	
+<p>
+To implement a Blackjack player, first implement the 
+<a href="javadoc\garrettsmith\blackjack\EventHandler.html"><tt>EventHandler</tt></a> interface, then:
+<pre>
+double wager = 1000; // you're a high roller, right?
+EventHandler eventHandler = new MyEventHandler();
+Blackjack blackjack = new Blackjack();
+blackjack.playGame( eventHandler, wager );
+</pre>
+</p>
+
+<p>
+You can also play Blackjack via the console (using <tt>EventHandler</tt>) by using the scripts
+in the <tt>bin</tt> directory.
+</p>
+
+<h3>Documentation</h3>
+
+<p>
+The documentation consists only of this page, the <a href="javadoc/index.html">Javadoc</a>, and a HTML
+version of the source:
+
+<ul>
+<li><a href="java2html\garrettsmith\blackjack\Blackjack.java.html">garrettsmith.blackjack.Blackjack</a></li>
+<li><a href="java2html\garrettsmith\blackjack\EventHandler.java.html">garrettsmith.blackjack.EventHandler</a></li>
+<li><a href="java2html\garrettsmith\blackjack\Hand.java.html">garrettsmith.blackjack.Hand</a></li>
+<li><a href="java2html\garrettsmith\blackjack\Move.java.html">garrettsmith.blackjack.Move</a></li>
+<li><a href="java2html\garrettsmith\blackjack\NotAllowedException.java.html">garrettsmith.blackjack.NotAllowedException</a></li>
+<li><a href="java2html\garrettsmith\blackjack\Result.java.html">garrettsmith.blackjack.Result</a></li>
+<li><a href="java2html\garrettsmith\blackjack\Rules.java.html">garrettsmith.blackjack.Rules</a></li>
+<li><a href="java2html\garrettsmith\blackjack\refimpl\TextPlayer.java.html">garrettsmith.blackjack.refimpl.TextPlayer</a></li>
+<li><a href="java2html\garrettsmith\playingcards\Card.java.html">garrettsmith.playingcards.Card</a></li>
+<li><a href="java2html\garrettsmith\playingcards\CardContainer.java.html">garrettsmith.playingcards.CardContainer</a></li>
+<li><a href="java2html\garrettsmith\playingcards\CardList.java.html">garrettsmith.playingcards.CardList</a></li>
+<li><a href="java2html\garrettsmith\playingcards\Deck.java.html">garrettsmith.playingcards.Deck</a></li>
+<li><a href="java2html\garrettsmith\playingcards\NoMoreCardsException.java.html">garrettsmith.playingcards.NoMoreCardsException</a></li>
+<li><a href="java2html\garrettsmith\playingcards\StandardDeck.java.html">garrettsmith.playingcards.StandardDeck</a></li>
+</ul>
+</p>
+
+<h3>Support</h3>
+
+<p>
+You may e-mail me with support questions at &#103;s&#109;&#105;<foo />&#116;&#104;&nbsp;at<!-- iii -->&nbsp;&#110;orthw&#101;s&#116;&#101;&#114;n <!-- xxx -->dot&nbsp;<spammersareevil />&#101;d&#117;</a>.
+</p>
+
+<h3>License</h3>
+
+<p>
+Copyright (c) 2005 Garrett Smith<br />
+The MIT License
+</p><p>
+Permission is hereby granted, free of charge, to any person obtaining a copy 
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+copies of the Software, and to permit persons to whom the Software is 
+furnished to do so, subject to the following conditions:
+</p><p>
+The above copyright notice and this permission notice shall be included in all 
+copies or substantial portions of the Software.
+</p>
+
+<h3>Warranty</h3>
+
+<p>
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN 
+THE SOFTWARE.
+</p>
+
+  </body>
+</html>

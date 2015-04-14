@@ -1,0 +1,218 @@
+/*
+Copyright (c) 2005 Garrett Smith
+The MIT License
+
+Permission is hereby granted, free of charge, to any person obtaining a copy 
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+copies of the Software, and to permit persons to whom the Software is 
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all 
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN 
+THE SOFTWARE.
+*/
+
+// $Id: PseudorandomDataContainer.java.nobuild,v 1.1.1.1 2002/06/26 21:36:26 gms Exp $
+
+package garrett_smith.blackjack.autoplayer.solver;
+
+// Java packages
+import java.io.*;
+import java.util.HashMap;
+
+// third-party packages
+// none
+
+// garrett-smith packages
+// none
+
+/**
+ * TODO2 add comments
+ *
+ * @author Garrett Smith, gsmith at northwestern dot edu
+ * @version Blackjack v1.0, RCS $Revision: 1.1.1.1 $
+ * @since   Blackjack v1.0
+ */
+
+/*
+ * Revision history:
+ *
+ * DO NOT MODIFY THE LOG INFORMATION BELOW.  It is an image of what resides
+ * in the CVS repository.  If you want to modify the log information use cvs.
+ *
+ * $Log: PseudorandomDataContainer.java.nobuild,v $
+ * Revision 1.1.1.1  2002/06/26 21:36:26  gms
+ * Initial checkin of reorganized module.  See module blackjack.old for the old
+ * stuff.
+ *
+ */
+public class PseudorandomDataContainer extends DataContainer
+    implements SolverConstants {
+
+
+    //--------------------------------------------------------------------------
+    // public interface
+    //--------------------------------------------------------------------------
+
+    
+    // public constructors
+    
+    
+    public
+    PseudorandomDataContainer() {}
+
+
+    // public methods
+
+
+    public
+    Object clone() {
+
+        // TODO implement
+        return null;
+    }
+
+
+    public
+    boolean equals( Object object ) {
+
+        if ( object != null && object instanceof PseudorandomDataContainer ) {
+
+            // TODO implement
+        }
+        return false;
+    }
+
+
+    public
+    HashMap getData() {
+
+        return _data;
+    }
+
+
+    public
+    int getNumRecords() {
+
+        // TODO implement
+        return -1;
+    }
+
+
+    public
+    int hashCode() {
+
+        // TODO implement
+        return -1;
+    }
+
+
+    public
+    void initilize( Properties props )
+        throws Exception {
+
+
+        _dataLocation = new File( props.getProperty( DATA_LOCATION ) );
+        if ( Boolean.valueOf( props.getProperty( CONTINUE_DATA ) ) ) {
+
+            ObjectInputStream input =
+                     new ObjectInputStream(
+                              new BufferedInputStream(
+                                       new FileInputStream( _dataLocation ) ) );
+            _data = ( HashMap ) input.readObject();
+        }
+    }
+
+
+    public
+    void persist()
+        throws IOException {
+
+        ObjectOutputStream output = new ObjectOutputStream(
+                                           new BufferedOutputStream(
+                                                   new FileOutputStream(
+                                                            _dataLocation ) ) );
+        output.writeObject( this );
+        output.close();
+    }
+
+
+    public
+    void store( String path,
+                double result,
+                int initialValue,
+                boolean isSoft,
+                int dealerPublicValue ) {
+
+        HashMap pathMap = ( HashMap ) _data.get(
+                                     Utils.getPositionId( initialValue,
+                                                          isSoft,
+                                                          dealerPublicValue ) );
+        if ( pathMap == null ) {
+
+            pathMap = new HashMap();
+            _data.put( Utils.getPositionId( initialValue,
+                                            isSoft,
+                                            dealerPublicValue ), pathMap );
+        }
+        StatisticsContainer container =
+                                    ( StatisticsContainer ) pathMap.get( path );
+        if ( container == null ) {
+
+            container = new StatisticsContainer( path,
+                                                 initialValue,
+                                                 isSoft,
+                                                 dealerPublicValue );
+            pathMap.put( path, container );
+        }
+        container.record( result );
+        // TODO increment a counter
+    }
+
+
+    public
+    void setData( Object data ) { 
+
+        // TODO implement
+    }
+
+
+    public
+    String toString() {
+
+        // TODO implement
+        return "":
+    }
+
+
+    // public attributes
+
+
+    public static final   DATA_LOCATION     = "pseudoRandomPlayer.dataLocation";
+    public static final   CONTINUE_DATA
+                                = "pseudoRandomPlayer.useExistingDataContainer";
+
+
+    //--------------------------------------------------------------------------
+    // private interface
+    //--------------------------------------------------------------------------
+
+
+    // private attributes
+
+
+    private HashMap   _data    = new HashMap();
+    private File      _dataLocation = null;
+
+} // class PseudorandomDataContainer
+
+// EOF

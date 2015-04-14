@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head>
+<title></title>
+  <style type="text/css">
+    <!--code { font-family: Courier New, Courier; font-size: 10pt; margin: 0px; }-->
+  </style>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+</head><body>
+
+
+<!-- ======================================================== -->
+<!-- = Java Sourcecode to HTML automatically converted code = -->
+<!-- =   Java2Html Converter V4.1 2004 by Markus Gebhard  markus@jave.de   = -->
+<!-- =     Further information: http://www.java2html.de     = -->
+<div align="left" class="java">
+<table border="0" cellpadding="3" cellspacing="0" bgcolor="#ffffff">
+   <tr>
+  <!-- start source code -->
+   <td nowrap="nowrap" valign="top" align="left">
+    <code>
+<font color="#808080">001</font>&nbsp;<font color="#008000">/*</font><br/>
+<font color="#808080">002</font>&nbsp;<font color="#008000">Copyright&nbsp;(c)&nbsp;2005&nbsp;Garrett&nbsp;Smith</font><br/>
+<font color="#808080">003</font>&nbsp;<font color="#008000">The&nbsp;MIT&nbsp;License</font><br/>
+<font color="#808080">004</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">005</font>&nbsp;<font color="#008000">Permission&nbsp;is&nbsp;hereby&nbsp;granted,&nbsp;free&nbsp;of&nbsp;charge,&nbsp;to&nbsp;any&nbsp;person&nbsp;obtaining&nbsp;a&nbsp;copy&nbsp;</font><br/>
+<font color="#808080">006</font>&nbsp;<font color="#008000">of&nbsp;this&nbsp;software&nbsp;and&nbsp;associated&nbsp;documentation&nbsp;files&nbsp;(the&nbsp;&#34;Software&#34;),&nbsp;to&nbsp;deal</font><br/>
+<font color="#808080">007</font>&nbsp;<font color="#008000">in&nbsp;the&nbsp;Software&nbsp;without&nbsp;restriction,&nbsp;including&nbsp;without&nbsp;limitation&nbsp;the&nbsp;rights</font><br/>
+<font color="#808080">008</font>&nbsp;<font color="#008000">to&nbsp;use,&nbsp;copy,&nbsp;modify,&nbsp;merge,&nbsp;publish,&nbsp;distribute,&nbsp;sublicense,&nbsp;and/or&nbsp;sell&nbsp;</font><br/>
+<font color="#808080">009</font>&nbsp;<font color="#008000">copies&nbsp;of&nbsp;the&nbsp;Software,&nbsp;and&nbsp;to&nbsp;permit&nbsp;persons&nbsp;to&nbsp;whom&nbsp;the&nbsp;Software&nbsp;is&nbsp;</font><br/>
+<font color="#808080">010</font>&nbsp;<font color="#008000">furnished&nbsp;to&nbsp;do&nbsp;so,&nbsp;subject&nbsp;to&nbsp;the&nbsp;following&nbsp;conditions:</font><br/>
+<font color="#808080">011</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">012</font>&nbsp;<font color="#008000">The&nbsp;above&nbsp;copyright&nbsp;notice&nbsp;and&nbsp;this&nbsp;permission&nbsp;notice&nbsp;shall&nbsp;be&nbsp;included&nbsp;in&nbsp;all&nbsp;</font><br/>
+<font color="#808080">013</font>&nbsp;<font color="#008000">copies&nbsp;or&nbsp;substantial&nbsp;portions&nbsp;of&nbsp;the&nbsp;Software.</font><br/>
+<font color="#808080">014</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">015</font>&nbsp;<font color="#008000">THE&nbsp;SOFTWARE&nbsp;IS&nbsp;PROVIDED&nbsp;&#34;AS&nbsp;IS&#34;,&nbsp;WITHOUT&nbsp;WARRANTY&nbsp;OF&nbsp;ANY&nbsp;KIND,&nbsp;EXPRESS&nbsp;OR</font><br/>
+<font color="#808080">016</font>&nbsp;<font color="#008000">IMPLIED,&nbsp;INCLUDING&nbsp;BUT&nbsp;NOT&nbsp;LIMITED&nbsp;TO&nbsp;THE&nbsp;WARRANTIES&nbsp;OF&nbsp;MERCHANTABILITY,&nbsp;</font><br/>
+<font color="#808080">017</font>&nbsp;<font color="#008000">FITNESS&nbsp;FOR&nbsp;A&nbsp;PARTICULAR&nbsp;PURPOSE&nbsp;AND&nbsp;NONINFRINGEMENT.&nbsp;IN&nbsp;NO&nbsp;EVENT&nbsp;SHALL&nbsp;THE&nbsp;</font><br/>
+<font color="#808080">018</font>&nbsp;<font color="#008000">AUTHORS&nbsp;OR&nbsp;COPYRIGHT&nbsp;HOLDERS&nbsp;BE&nbsp;LIABLE&nbsp;FOR&nbsp;ANY&nbsp;CLAIM,&nbsp;DAMAGES&nbsp;OR&nbsp;OTHER&nbsp;</font><br/>
+<font color="#808080">019</font>&nbsp;<font color="#008000">LIABILITY,&nbsp;WHETHER&nbsp;IN&nbsp;AN&nbsp;ACTION&nbsp;OF&nbsp;CONTRACT,&nbsp;TORT&nbsp;OR&nbsp;OTHERWISE,&nbsp;ARISING&nbsp;FROM,</font><br/>
+<font color="#808080">020</font>&nbsp;<font color="#008000">OUT&nbsp;OF&nbsp;OR&nbsp;IN&nbsp;CONNECTION&nbsp;WITH&nbsp;THE&nbsp;SOFTWARE&nbsp;OR&nbsp;THE&nbsp;USE&nbsp;OR&nbsp;OTHER&nbsp;DEALINGS&nbsp;IN&nbsp;</font><br/>
+<font color="#808080">021</font>&nbsp;<font color="#008000">THE&nbsp;SOFTWARE.</font><br/>
+<font color="#808080">022</font>&nbsp;<font color="#008000">*/</font><br/>
+<font color="#808080">023</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">024</font>&nbsp;<font color="#008000">//&nbsp;$Id:&nbsp;StatisticsContainer.java,v&nbsp;1.2&nbsp;2005/06/04&nbsp;08:50:53&nbsp;gsmith&nbsp;Exp&nbsp;$</font><br/>
+<font color="#808080">025</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">026</font>&nbsp;<font color="#008000">//&nbsp;Copyright&nbsp;(C)&nbsp;2001&nbsp;Chad&nbsp;Wathington&nbsp;and&nbsp;Garrett&nbsp;Smith</font><br/>
+<font color="#808080">027</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">028</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">029</font>&nbsp;<font color="#0000c0"><b>package&nbsp;</b></font><font color="#000000">garrettsmith.blackjack.autoplayer.solver;</font><br/>
+<font color="#808080">030</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">031</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">032</font>&nbsp;<font color="#008000">//&nbsp;Java&nbsp;packages</font><br/>
+<font color="#808080">033</font>&nbsp;<font color="#008000">//&nbsp;none</font><br/>
+<font color="#808080">034</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">035</font>&nbsp;<font color="#008000">//&nbsp;third-party&nbsp;packages</font><br/>
+<font color="#808080">036</font>&nbsp;<font color="#008000">//&nbsp;none</font><br/>
+<font color="#808080">037</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">038</font>&nbsp;<font color="#008000">//&nbsp;garrett_smith&nbsp;packages</font><br/>
+<font color="#808080">039</font>&nbsp;<font color="#008000">//none</font><br/>
+<font color="#808080">040</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">041</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">042</font>&nbsp;<font color="#0000c0"><b>public&nbsp;class&nbsp;</b></font><font color="#000000">StatisticsContainer</font><br/>
+<font color="#808080">043</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000c0"><b>implements&nbsp;&nbsp;</b></font><font color="#000000">java.io.Serializable&nbsp;</font><font color="#000000">{</font><br/>
+<font color="#808080">044</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">045</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">046</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000c0"><b>public</b></font><br/>
+<font color="#808080">047</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">Object&nbsp;clone</font><font color="#000000">()&nbsp;{</font><br/>
+<font color="#808080">048</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">049</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#008000">//&nbsp;TODO&nbsp;implement</font><br/>
+<font color="#808080">050</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000c0"><b>return&nbsp;null</b></font><font color="#000000">;</font><br/>
+<font color="#808080">051</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">}</font><br/>
+<font color="#808080">052</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">053</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">054</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000c0"><b>public</b></font><br/>
+<font color="#808080">055</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#c00000"><b>boolean&nbsp;</b></font><font color="#000000">equals</font><font color="#000000">(&nbsp;</font><font color="#000000">Object&nbsp;object&nbsp;</font><font color="#000000">)&nbsp;{</font><br/>
+<font color="#808080">056</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">057</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000c0"><b>if&nbsp;</b></font><font color="#000000">(&nbsp;</font><font color="#000000">object&nbsp;!=&nbsp;</font><font color="#0000c0"><b>null&nbsp;</b></font><font color="#000000">&amp;&amp;&nbsp;object&nbsp;</font><font color="#0000c0"><b>instanceof&nbsp;</b></font><font color="#000000">StatisticsContainer&nbsp;</font><font color="#000000">)&nbsp;{</font><br/>
+<font color="#808080">058</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">059</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#008000">//&nbsp;TODO&nbsp;implement</font><br/>
+<font color="#808080">060</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">}</font><br/>
+<font color="#808080">061</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000c0"><b>return&nbsp;false</b></font><font color="#000000">;</font><br/>
+<font color="#808080">062</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">}</font><br/>
+<font color="#808080">063</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">064</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">065</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000c0"><b>public</b></font><br/>
+<font color="#808080">066</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#c00000"><b>int&nbsp;</b></font><font color="#000000">hashCode</font><font color="#000000">()&nbsp;{</font><br/>
+<font color="#808080">067</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">068</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#008000">//&nbsp;TODO&nbsp;implement</font><br/>
+<font color="#808080">069</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000c0"><b>return&nbsp;</b></font><font color="#990000">0</font><font color="#000000">;</font><br/>
+<font color="#808080">070</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">}</font><br/>
+<font color="#808080">071</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">072</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">073</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000c0"><b>public</b></font><br/>
+<font color="#808080">074</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#c00000"><b>void&nbsp;</b></font><font color="#000000">record</font><font color="#000000">(&nbsp;</font><font color="#c00000"><b>double&nbsp;</b></font><font color="#000000">result&nbsp;</font><font color="#000000">)&nbsp;{</font><br/>
+<font color="#808080">075</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">076</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">_count++;</font><br/>
+<font color="#808080">077</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">_cumulativeResult&nbsp;+=&nbsp;result;</font><br/>
+<font color="#808080">078</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">}</font><br/>
+<font color="#808080">079</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">080</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">081</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000c0"><b>public</b></font><br/>
+<font color="#808080">082</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">String&nbsp;toString</font><font color="#000000">()&nbsp;{</font><br/>
+<font color="#808080">083</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">084</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000c0"><b>return&nbsp;</b></font><font color="#990000">&#34;average&nbsp;result=&#34;&nbsp;</font><font color="#000000">+Double.toString</font><font color="#000000">(&nbsp;</font><font color="#000000">_cumulativeResult&nbsp;/&nbsp;_count&nbsp;</font><font color="#000000">)</font><br/>
+<font color="#808080">085</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">+&nbsp;</font><font color="#990000">&#34;,&nbsp;n=&#34;&nbsp;</font><font color="#000000">+&nbsp;Integer.toString</font><font color="#000000">(&nbsp;</font><font color="#000000">_count&nbsp;</font><font color="#000000">)</font><font color="#000000">;</font><br/>
+<font color="#808080">086</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">}</font><br/>
+<font color="#808080">087</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">088</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">089</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">StatisticsContainer</font><font color="#000000">(&nbsp;</font><font color="#000000">String&nbsp;path,</font><br/>
+<font color="#808080">090</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#c00000"><b>int&nbsp;</b></font><font color="#000000">initialHandValue,</font><br/>
+<font color="#808080">091</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#c00000"><b>boolean&nbsp;</b></font><font color="#000000">isSoft,</font><br/>
+<font color="#808080">092</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#c00000"><b>int&nbsp;</b></font><font color="#000000">dealerPublicValue&nbsp;</font><font color="#000000">)&nbsp;{</font><br/>
+<font color="#808080">093</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">094</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">_isSoft&nbsp;=&nbsp;isSoft;</font><br/>
+<font color="#808080">095</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">_playerValue&nbsp;=&nbsp;initialHandValue;</font><br/>
+<font color="#808080">096</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">_path&nbsp;=&nbsp;path;</font><br/>
+<font color="#808080">097</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">_dealerValue&nbsp;=&nbsp;dealerPublicValue;</font><br/>
+<font color="#808080">098</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">}</font><br/>
+<font color="#808080">099</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">100</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">101</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000c0"><b>private</b></font><br/>
+<font color="#808080">102</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">StatisticsContainer</font><font color="#000000">()&nbsp;{}</font><br/>
+<font color="#808080">103</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">104</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">105</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000c0"><b>private&nbsp;</b></font><font color="#c00000"><b>int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></font><font color="#000000">_playerValue&nbsp;=&nbsp;-</font><font color="#990000">1</font><font color="#000000">;</font><br/>
+<font color="#808080">106</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000c0"><b>private&nbsp;</b></font><font color="#c00000"><b>int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></font><font color="#000000">_dealerValue&nbsp;=&nbsp;-</font><font color="#990000">1</font><font color="#000000">;</font><br/>
+<font color="#808080">107</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000c0"><b>private&nbsp;</b></font><font color="#c00000"><b>boolean&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></font><font color="#000000">_isSoft&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;</font><font color="#0000c0"><b>false</b></font><font color="#000000">;</font><br/>
+<font color="#808080">108</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000c0"><b>private&nbsp;</b></font><font color="#000000">String&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_path&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;</font><font color="#0000c0"><b>null</b></font><font color="#000000">;</font><br/>
+<font color="#808080">109</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">110</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000c0"><b>private&nbsp;</b></font><font color="#c00000"><b>int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></font><font color="#000000">_count&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;</font><font color="#990000">0</font><font color="#000000">;</font><br/>
+<font color="#808080">111</font>&nbsp;<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000c0"><b>private&nbsp;</b></font><font color="#c00000"><b>double&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></font><font color="#000000">_cumulativeResult&nbsp;=&nbsp;</font><font color="#990000">0.0</font><font color="#000000">;</font><br/>
+<font color="#808080">112</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">113</font>&nbsp;<font color="#000000">}</font><br/>
+<font color="#808080">114</font>&nbsp;<font color="#ffffff"></font><br/>
+<font color="#808080">115</font>&nbsp;<font color="#008000">//&nbsp;EOF</font></code>
+    
+   </td>
+  <!-- end source code -->
+   </tr>
+</table>
+</div>
+<!-- =       END of automatically generated HTML code       = -->
+<!-- ======================================================== -->
+
+
+</body></html>
