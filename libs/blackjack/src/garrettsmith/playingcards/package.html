@@ -1,0 +1,32 @@
+<html>
+<head />
+<body>
+
+<p>
+Provides basic classes for simulating a game that uses playing cards.
+</p>
+<p>
+While Plaingcards was designed to be flexible enough to support any card game,
+it was implemented only with the features needed to simulate a game of
+Blackjack.  For example, the package provides only minimal support for jokers
+because Blackjack does not require them.
+</p>
+<p>
+<code>Card</code> is an immutable object that represents a single card.  
+<code>CardContainer</code> and <code>CardList</code> types provide logical
+aggregations of cards.
+</p>
+<p>
+<code>Deck</code> provides for an arbitrary type distribution of cards.
+Blackjack requires a standard deck of cards with no jokers.  Some types of
+poker use jokers.  Pinochle, for example, uses an altogether different type of deck.  
+If you require a different type of deck, provide a new <code>Deck</code> implementation
+and use it with <code>CardContainer</code>.
+</p>
+<p>
+<code>CardContainer</code> provides for shuffling and distributing
+an arbitrary type distribution and number of decks.
+</p>
+
+</body>
+</html>

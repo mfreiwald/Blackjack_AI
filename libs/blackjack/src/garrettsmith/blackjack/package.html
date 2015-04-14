@@ -1,0 +1,27 @@
+<html>
+<head />
+<body>
+
+<p>
+Provides classes for playing a game of blackjack.
+</p>
+<p>
+Implement {@link garrettsmith.blackjack.EventHandler} to respond to events that a fired by
+{@link garrettsmith.blackjack.Blackjack}.  Then, pass in an instance of that handler to
+{@link garrettsmith.blackjack.Blackjack#playGame}.
+</p>
+<p>
+For example:
+<pre>
+        double wager = 2.0;
+        Blackjack blackjack = new Blackjack();
+        EventHandler handler = new MyEventHandler();
+        blackjack.playGame( handler, wager );
+</pre>
+</p>
+<p>
+See {@link garrettsmith.blackjack.refimpl.TextPlayer} for an example implementation.
+</p>
+
+</body>
+</html>

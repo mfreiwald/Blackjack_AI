@@ -1,0 +1,232 @@
+/*
+Copyright (c) 2005 Garrett Smith
+The MIT License
+
+Permission is hereby granted, free of charge, to any person obtaining a copy 
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+copies of the Software, and to permit persons to whom the Software is 
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all 
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN 
+THE SOFTWARE.
+*/
+
+// $Id: PseudorandomPlayer.java.nobuild,v 1.1.1.1 2002/06/26 21:36:26 gms Exp $
+
+package garrett_smith.blackjack.autoplayer.solver;
+
+// Java packages
+import java.util.*;
+
+// third-party packages
+// none
+
+// garrett_smith packages
+import garrett_smith.blackjack.Hand;
+import garrett_smith.blackjack.Blackjack;
+
+
+/**
+ * TODO2 add comments
+ *
+ * @author Garrett Smith, gsmith at northwestern dot edu
+ * @version Blackjack v1.0, RCS $Revision: 1.1.1.1 $
+ * @since   Blackjack v1.0
+ */
+
+/*
+ * Revision history:
+ *
+ * DO NOT MODIFY THE LOG INFORMATION BELOW.  It is an image of what resides
+ * in the CVS repository.  If you want to modify the log information use cvs.
+ *
+ * $Log: PseudorandomPlayer.java.nobuild,v $
+ * Revision 1.1.1.1  2002/06/26 21:36:26  gms
+ * Initial checkin of reorganized module.  See module blackjack.old for the old
+ * stuff.
+ *
+ */
+public class PseudorandomPlayer
+    implements Player, SolverConstants {
+
+
+    //--------------------------------------------------------------------------
+    // public interface
+    //--------------------------------------------------------------------------
+
+    
+    // public methods
+
+    
+    public
+    void fatalErrorOccurred( Exception e ) {
+
+        e.printStackTrace();
+        System.exit( 1 );
+    }
+
+
+    public
+    void handFinished( Hand hand,
+                       double gainOrLoss,
+                       int result,
+                       List dealerCards ) {
+
+        if ( result != DEALER_HAD_BLACKJACK &&
+             result != PLAYER_HAD_BLACKJACK &&
+             result != PUSH_WITH_BLACKJACK ) {
+
+            if ( !haveUnplayedHands() ) {
+
+                // for each position, report the final outcome
+            }
+        }
+/* old
+        if ( result != DEALER_HAD_BLACKJACK &&
+             result != PLAYER_HAD_BLACKJACK &&
+             result != PUSH_WITH_BLACKJACK ) {
+
+            _container.storeResult( _path.toString(),
+                                    gainOrLoss,
+                                    _playerValue,
+                                    _isSoft,
+                                    _dealerPublicValue );
+        }
+        _handInProgress = false;
+*/
+    }
+
+
+
+    // TODO1 implement, if needed
+    public
+    void initialize( Properties props ) {}
+
+
+    public
+    boolean offerEarlySurrender( Hand hand ) {
+
+        throw new IllegalStateException( "this player, "
+            + this.getClass().getName() + ", was offered early surrender, but "
+            + "does not support it" );
+    }
+
+
+    public
+    boolean offerInsurance( Hand hand ) {
+
+        return false;
+    }
+
+
+    public
+    int offerRegularTurn( Hand hand ) {
+
+/* old
+        if ( !_handInProgress ) {
+
+            _handInProgress = true;
+            _playerValue = hand.getValue();
+            _isSoft = hand.isSoft();
+            _dealerPublicValue
+                             = Blackjack.calculateValue( hand.getDealerCard() );
+            _path.delete( 0, _path.length() );
+        }
+        else {
+
+            _path.append( ", " );
+        }
+        if ( hand.getBestValue() < 7 ) {
+
+            _path.append( HIT_PATH );
+            return HIT;
+        }
+        if ( hand.getBestValue() == 21 ) {
+
+            _path.append( STAND_PATH );
+            return STAND;
+        }
+
+        double random = _random.nextDouble();
+        if ( hand.isDoubleDownAllowed() ) {
+
+            if ( random > 0.75 ) {
+
+                _path.append( DOUBLE_DOWN_PATH );
+                return DOUBLE;
+            }
+            else if ( random <= 0.75 && random > 0.5 ) {
+
+                _path.append( STAND_PATH );
+                return STAND;
+            }
+            else {
+
+                _path.append( HIT_PATH );
+                return HIT;
+            }
+        }
+        else {
+
+            if ( random > 0.7 ) {
+
+                _path.append( HIT_PATH );
+                return HIT;
+            }
+            else {
+
+                _path.append( STAND_PATH );
+                return STAND;
+            }
+        }
+*/
+        return -1;
+    }
+
+
+    public
+    void setDataContainer( DataContainer container ) {
+
+        _container = container;
+    }
+
+
+    //--------------------------------------------------------------------------
+    // private interface
+    //--------------------------------------------------------------------------
+
+    
+    // private methods
+
+
+    /**
+     * Returns whether there are unplayed hands from earlier splits.
+     */
+    // TODO1 implement
+    private
+    boolean haveUnplayedHands() {
+
+        return false;
+    }
+
+    
+    // private attributes
+
+
+    private DataContainer _container           = null;
+    private Random        _random              = new Random();
+    private LinkedList    _paths               = new LinkedList();
+
+} // class PseudorandomPlayer
+
+// EOF
