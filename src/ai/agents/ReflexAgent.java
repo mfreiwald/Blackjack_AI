@@ -1,5 +1,6 @@
 package ai.agents;
 
+import garrettsmith.blackjack.Blackjack;
 import garrettsmith.blackjack.EventHandler;
 import garrettsmith.blackjack.Hand;
 import garrettsmith.blackjack.Move;
@@ -8,10 +9,10 @@ import garrettsmith.playingcards.CardList;
 
 import java.util.Random;
 
-public class ReflexAgent implements EventHandler {
+public class ReflexAgent extends BaseAgent {
 
 	public void printHand(Hand hand) {
-		System.out.println(hand);
+		printCards(hand.getCards());
 	}
 
 	@Override
