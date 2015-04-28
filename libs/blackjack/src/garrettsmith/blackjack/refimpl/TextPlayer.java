@@ -459,7 +459,7 @@ public class TextPlayer implements EventHandler {
     }
 
 
-    private static
+    public static
     Move getMoveFromUser( Hand hand )
         throws IOException {
 
@@ -468,9 +468,10 @@ public class TextPlayer implements EventHandler {
 
         while ( true ) {
 
-            promptForMove( hand );
-            input = getInputFromUser();
-            response = interpretMove( input );
+            //promptForMove( hand );
+            //input = getInputFromUser();
+        	input = "";
+            response = Move.STAND; //interpretMove( input );
             if ( response == null ) {
 
                 System.out.println( "I'm sorry, I didn't understand \"" + input
@@ -570,7 +571,7 @@ public class TextPlayer implements EventHandler {
     }
 
 
-    private
+    public
     TextPlayer() {}
 
     private static class Options {
