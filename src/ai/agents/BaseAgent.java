@@ -12,6 +12,9 @@ import garrettsmith.playingcards.CardList;
 
 public class BaseAgent implements EventHandler {
 
+	private double _purse = 0.0;
+
+	
 	@Override
 	public void fatalErrorOccurred(Exception e) {
 		// TODO Auto-generated method stub
@@ -21,8 +24,46 @@ public class BaseAgent implements EventHandler {
 	@Override
 	public void handFinished(Hand hand, double gain, Result result,
 			CardList dealerCards) {
-		// TODO Auto-generated method stub
-		
+
+		System.out.print("game over: you ");
+		if (Result.PUSH.equals(result)) {
+			System.out.println("pushed: 0.0");
+		} else if (Result.WIN.equals(result)) {
+			System.out.println("won: " + Double.toString(gain));
+		} else if (Result.LOSE.equals(result)) {
+			System.out.println("lost: " + Double.toString(gain));
+		} else if (Result.LATE_SURRENDER.equals(result)) {
+			System.out.println("surrendered: " + Double.toString(gain));
+		} else if (Result.DEALER_BLACKJACK.equals(result)) {
+			System.out.println("lost: " + Double.toString(gain)
+					+ "; the dealer had a blackjack");
+		} else if (Result.BUSTED.equals(result)) {
+			System.out.println("BUSTED: " + Double.toString(gain));
+		} else if (Result.DEALER_BUSTED.equals(result)) {
+			System.out.println("won; the dealer BUSTED: "
+					+ Double.toString(gain));
+		} else if (Result.BLACKJACK.equals(result)) {
+			System.out
+					.println("got BLACKJACK!: " + Double.toString(gain));
+		} else if (Result.BLACKJACK_PUSH.equals(result)) {
+			System.out.println("pushed, you BOTH had blackjack: "
+					+ Double.toString(gain));
+		} else {
+			throw new IllegalArgumentException("unknown value of parameter "
+					+ "result: " + result.value());
+		}
+		System.out.print("In the end, the dealer had ");
+		printCards(dealerCards);
+		System.out.println(" ("
+				+ Integer.toString(Blackjack.calculateBestValue(dealerCards))
+				+ "),");
+		System.out.print("and you had ");
+		printCards(hand.getCards());
+		System.out.println(" (" + Blackjack.calculateBestValue(hand.getCards())
+				+ ").");
+		_purse += gain;
+		System.out.println("You have " + Double.toString(_purse)
+				+ " in your purse.");
 	}
 
 	@Override

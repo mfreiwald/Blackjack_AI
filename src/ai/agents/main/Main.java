@@ -6,7 +6,7 @@ import ai.agents.ReflexAgent;
 
 public class Main {
 
-	public static final int ROUNDS = 2;
+	public static final int ROUNDS = 5;
 	
 	private static int roundsPlayed = 0;
 

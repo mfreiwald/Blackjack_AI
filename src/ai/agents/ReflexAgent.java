@@ -20,12 +20,6 @@ public class ReflexAgent extends BaseAgent {
 		System.out.println("SHit");
 	}
 
-	@Override
-	public void handFinished(Hand hand, double gain, Result result,
-			CardList dealerCards) {
-		System.out.println("calling handfinished with");
-		printHand(hand);
-	}
 
 	@Override
 	public boolean offerEarlySurrender(Hand hand) {
