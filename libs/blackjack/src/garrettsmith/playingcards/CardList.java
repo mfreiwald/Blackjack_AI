@@ -35,7 +35,9 @@ import java.util.*;
  * @version Blackjack v1.0
  * @since Blackjack v1.0
  */
-public final class CardList extends ArrayList {
+public final class CardList extends ArrayList<Card> {
+
+	private static final long serialVersionUID = -5323914906451782987L;
 
 	/**
 	 * Creates an empty card list with an initial capaciy of 10.
@@ -63,7 +65,7 @@ public final class CardList extends ArrayList {
 	 * 
 	 * @throws IllegalArgumentException if <code>o</code> isn't a {@link Card}.
 	 */
-	public boolean add( final Object o ) {
+	public boolean add( final Card o ) {
 		if ( ! ( o instanceof Card ) ) {
 			throw new IllegalArgumentException( "must be a card" );
 		}

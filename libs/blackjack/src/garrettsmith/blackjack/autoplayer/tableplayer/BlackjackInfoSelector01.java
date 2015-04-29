@@ -89,36 +89,35 @@ public final class BlackjackInfoSelector01
     public
     BlackjackInfoSelector01() {
 
-        ArrayList moves = null;
-        HashMap dealerHandMap = null;
+        HashMap<Integer, ArrayList<Move>> dealerHandMap = null;
 
-        final ArrayList HIT = new ArrayList( 1 );
+        final ArrayList<Move> HIT = new ArrayList<Move>( 1 );
         HIT.add( Move.HIT );
 
-        final ArrayList STAND = new ArrayList( 1 );
+        final ArrayList<Move> STAND = new ArrayList<Move>( 1 );
         STAND.add( Move.STAND );
 
-        final ArrayList SPLIT_HIT = new ArrayList( 2 );
+        final ArrayList<Move> SPLIT_HIT = new ArrayList<Move>( 2 );
         SPLIT_HIT.add( Move.SPLIT );
         SPLIT_HIT.add( Move.HIT );
 
-        final ArrayList DOUBLE_HIT = new ArrayList( 2 );
+        final ArrayList<Move> DOUBLE_HIT = new ArrayList<Move>( 2 );
         DOUBLE_HIT.add( Move.DOUBLE );
         DOUBLE_HIT.add( Move.HIT );
 
-        final ArrayList DOUBLE_STAND = new ArrayList( 2 );
+        final ArrayList<Move> DOUBLE_STAND = new ArrayList<Move>( 2 );
         DOUBLE_STAND.add( Move.DOUBLE );
         DOUBLE_STAND.add( Move.STAND );
 
-        final ArrayList SPLIT_STAND = new ArrayList( 2 );
+        final ArrayList<Move> SPLIT_STAND = new ArrayList<Move>( 2 );
         SPLIT_STAND.add( Move.SPLIT );
         SPLIT_STAND.add( Move.STAND );
 
-        final ArrayList SURRENDER_HIT = new ArrayList( 2 );
+        final ArrayList<Move> SURRENDER_HIT = new ArrayList<Move>( 2 );
         SURRENDER_HIT.add( Move.SURRENDER );
         SURRENDER_HIT.add( Move.HIT );
 
-        final ArrayList SURRENDER_SPLIT_HIT = new ArrayList( 3 );
+        final ArrayList<Move> SURRENDER_SPLIT_HIT = new ArrayList<Move>( 3 );
         SURRENDER_SPLIT_HIT.add( Move.SURRENDER );
         SURRENDER_SPLIT_HIT.add( Move.SPLIT );
         SURRENDER_SPLIT_HIT.add( Move.HIT );
@@ -135,7 +134,7 @@ public final class BlackjackInfoSelector01
         setSameForAllDealerPositions( "8", HIT ); // note exceptions below
 
         // for player 4 and dealer 2-7 split or hit
-        dealerHandMap = ( HashMap ) _playerPositionMap.get( "4" );
+        dealerHandMap = ( HashMap<Integer, ArrayList<Move>> ) _playerPositionMap.get( "4" );
         dealerHandMap.put( _TWO,   SPLIT_HIT );
         dealerHandMap.put( _THREE, SPLIT_HIT );
         dealerHandMap.put( _FOUR,  SPLIT_HIT );
@@ -144,7 +143,7 @@ public final class BlackjackInfoSelector01
         dealerHandMap.put( _SEVEN, SPLIT_HIT );
 
         // for player 6 and dealer 2-7 split or hit
-        dealerHandMap = ( HashMap ) _playerPositionMap.get( "6" );
+        dealerHandMap = ( HashMap<Integer, ArrayList<Move>> ) _playerPositionMap.get( "6" );
         dealerHandMap.put( _TWO,   SPLIT_HIT );
         dealerHandMap.put( _THREE, SPLIT_HIT );
         dealerHandMap.put( _FOUR,  SPLIT_HIT );
@@ -153,13 +152,13 @@ public final class BlackjackInfoSelector01
         dealerHandMap.put( _SEVEN, SPLIT_HIT );
 
         // for player 8 and dealer 5 and 6 split or hit
-        dealerHandMap = ( HashMap ) _playerPositionMap.get( "8" );
+        dealerHandMap = ( HashMap<Integer, ArrayList<Move>> ) _playerPositionMap.get( "8" );
         dealerHandMap.put( _FIVE,  SPLIT_HIT );
         dealerHandMap.put( _SIX,   SPLIT_HIT );
 
 
         // **** if player has 9...
-        dealerHandMap = new HashMap( 10 );
+        dealerHandMap = new HashMap<Integer, ArrayList<Move>>( 10 );
         _playerPositionMap.put( "9", dealerHandMap );
 
         // .. and dealer has 2 or 7-ace then hit
@@ -178,7 +177,7 @@ public final class BlackjackInfoSelector01
 
 
         // **** if player has 10...
-        dealerHandMap = new HashMap( 10 );
+        dealerHandMap = new HashMap<Integer, ArrayList<Move>>( 10 );
         _playerPositionMap.put( "10", dealerHandMap );
 
         // .. and dealer has 2-9 then double
@@ -197,7 +196,7 @@ public final class BlackjackInfoSelector01
 
 
         // **** if player has 11...
-        dealerHandMap = new HashMap( 10 );
+        dealerHandMap = new HashMap<Integer, ArrayList<Move>>( 10 );
         _playerPositionMap.put( "11", dealerHandMap );
 
         // .. and dealer has 2-10 then double
@@ -216,7 +215,7 @@ public final class BlackjackInfoSelector01
 
 
         // **** if player has 12...
-        dealerHandMap = new HashMap( 10 );
+        dealerHandMap = new HashMap<Integer, ArrayList<Move>>( 10 );
         _playerPositionMap.put( "12", dealerHandMap );
 
         // ... and dealer has 2 or 3 then split or hit
@@ -237,7 +236,7 @@ public final class BlackjackInfoSelector01
 
 
         // **** if player has 13...
-        dealerHandMap = new HashMap( 10 );
+        dealerHandMap = new HashMap<Integer, ArrayList<Move>>( 10 );
         _playerPositionMap.put( "13", dealerHandMap );
 
         // ... and dealer has 2-6 then stand
@@ -256,7 +255,7 @@ public final class BlackjackInfoSelector01
 
 
         // **** if player has 14...
-        dealerHandMap = new HashMap( 10 );
+        dealerHandMap = new HashMap<Integer, ArrayList<Move>>( 10 );
         _playerPositionMap.put( "14", dealerHandMap );
 
         // ... and dealer has 2-6 then split or stand
@@ -277,7 +276,7 @@ public final class BlackjackInfoSelector01
 
 
         // **** if player has 15...
-        dealerHandMap = new HashMap( 10 );
+        dealerHandMap = new HashMap<Integer, ArrayList<Move>>( 10 );
         _playerPositionMap.put( "15", dealerHandMap );
 
         // ... and dealer has 2-6 higher then stand
@@ -298,7 +297,7 @@ public final class BlackjackInfoSelector01
 
 
         // **** if player has 16...
-        dealerHandMap = new HashMap( 10 );
+        dealerHandMap = new HashMap<Integer, ArrayList<Move>>( 10 );
         _playerPositionMap.put( "16", dealerHandMap );
 
         // ... and dealer has 2-6 then split or stand
@@ -321,7 +320,7 @@ public final class BlackjackInfoSelector01
 
 
         // **** if player has 18...
-        dealerHandMap = new HashMap( 10 );
+        dealerHandMap = new HashMap<Integer, ArrayList<Move>>( 10 );
         _playerPositionMap.put( "18", dealerHandMap );
 
         // ... and dealer has 2-6, 8, or 9 then split or stand
@@ -352,7 +351,7 @@ public final class BlackjackInfoSelector01
         setSameForAllDealerPositions( "soft 12", SPLIT_HIT );
 
         // **** if player has soft 13
-        dealerHandMap = new HashMap( 10 );
+        dealerHandMap = new HashMap<Integer, ArrayList<Move>>( 10 );
         _playerPositionMap.put( "soft 13", dealerHandMap );
 
         // ...and dealer has 2-4 or 7-ace then hit
@@ -371,7 +370,7 @@ public final class BlackjackInfoSelector01
 
 
         // **** if player has soft 14
-        dealerHandMap = new HashMap( 10 );
+        dealerHandMap = new HashMap<Integer, ArrayList<Move>>( 10 );
         _playerPositionMap.put( "soft 14", dealerHandMap );
 
         // ...and dealer has 2-4 or 7-ace then hit
@@ -390,7 +389,7 @@ public final class BlackjackInfoSelector01
 
 
         // **** if player has soft 15
-        dealerHandMap = new HashMap( 10 );
+        dealerHandMap = new HashMap<Integer, ArrayList<Move>>( 10 );
         _playerPositionMap.put( "soft 15", dealerHandMap );
 
         // ...and dealer has 2, 3, or 7-ace then hit
@@ -409,7 +408,7 @@ public final class BlackjackInfoSelector01
 
 
         // **** if player has soft 16
-        dealerHandMap = new HashMap( 10 );
+        dealerHandMap = new HashMap<Integer, ArrayList<Move>>( 10 );
         _playerPositionMap.put( "soft 16", dealerHandMap );
 
         // ...and dealer has 2, 3, or 7-ace then hit
@@ -428,7 +427,7 @@ public final class BlackjackInfoSelector01
 
 
         // **** if player has soft 17
-        dealerHandMap = new HashMap( 10 );
+        dealerHandMap = new HashMap<Integer, ArrayList<Move>>( 10 );
         _playerPositionMap.put( "soft 17", dealerHandMap );
 
         // ...and dealer has 2, or 7-ace then hit
@@ -447,7 +446,7 @@ public final class BlackjackInfoSelector01
 
 
         // **** if player has soft 18
-        dealerHandMap = new HashMap( 10 );
+        dealerHandMap = new HashMap<Integer, ArrayList<Move>>( 10 );
         _playerPositionMap.put( "soft 18", dealerHandMap );
 
         // ...and dealer has 2, 7, or 8 then stand
@@ -482,8 +481,8 @@ public final class BlackjackInfoSelector01
     public
     Move getMove( Hand hand ) {
 
-        ArrayList moves = ( ArrayList )
-                            ( ( HashMap )
+        ArrayList<Move> moves = ( ArrayList<Move> )
+                            ( ( HashMap<Integer, ArrayList<Move>> )
                                 _playerPositionMap.get(
                                      getNormalizedPosition( hand ) ) )
                                             .get( new Integer(
@@ -532,7 +531,7 @@ public final class BlackjackInfoSelector01
 
 
     private
-    void setSameForAllDealerPositions( String playerPosition, ArrayList moves ){
+    void setSameForAllDealerPositions( String playerPosition, ArrayList<Move> moves ){
 
         if ( playerPosition == null || moves == null )
 
@@ -542,7 +541,7 @@ public final class BlackjackInfoSelector01
 
             throw new IllegalArgumentException( "moves must have at least "
                                                                  + "one item" );
-        HashMap dealerHandMap = new HashMap( 10 );
+        HashMap<Integer, ArrayList<Move>> dealerHandMap = new HashMap<Integer, ArrayList<Move>>( 10 );
         _playerPositionMap.put( playerPosition, dealerHandMap );
 
         dealerHandMap.put( _TWO,   moves );
@@ -572,7 +571,7 @@ public final class BlackjackInfoSelector01
     private static final Integer _TEN        = new Integer( 10 );
     private static final Integer _ACE        = new Integer( 1 );
 
-    private HashMap _playerPositionMap = new HashMap( 24 );
+    private HashMap<String, HashMap<Integer, ArrayList<Move>>> _playerPositionMap = new HashMap<String, HashMap<Integer, ArrayList<Move>>>( 24 );
 
 }  // class BlackjackInfoSelector01
 

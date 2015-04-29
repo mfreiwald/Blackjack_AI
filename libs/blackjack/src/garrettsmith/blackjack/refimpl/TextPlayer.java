@@ -43,9 +43,7 @@ import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -70,7 +68,6 @@ public class TextPlayer implements EventHandler {
 
 	private boolean _hasDealerCardBeenPrinted = false;
 	private Blackjack _blackjack;
-	private Map _dealerMappings = new HashMap();
 	private double _purse = 0.0;
 	private Rules _rules = null;
 
@@ -325,7 +322,7 @@ public class TextPlayer implements EventHandler {
 		}
 	}
 
-	private static void printCards(List cards) {
+	private static void printCards(List<Card> cards) {
 
 		Card card;
 		for (int i = 0; i < cards.size(); i++) {

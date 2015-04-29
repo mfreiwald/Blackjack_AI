@@ -1,7 +1,5 @@
 package ai.agents;
 
-import java.util.List;
-
 import garrettsmith.blackjack.Blackjack;
 import garrettsmith.blackjack.EventHandler;
 import garrettsmith.blackjack.Hand;

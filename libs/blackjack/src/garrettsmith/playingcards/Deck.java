@@ -49,7 +49,7 @@ public interface Deck {
      * @return a <code>CardList</code> of {@link Card}s
      */
     public abstract
-    List getAllCards();
+    List<Card> getAllCards();
 
     /**
      * Returns the total number of cards in the deck.
