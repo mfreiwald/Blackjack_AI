@@ -1,7 +1,5 @@
 package ai.agents;
 
-import java.util.List;
-
 import garrettsmith.blackjack.Blackjack;
 import garrettsmith.blackjack.EventHandler;
 import garrettsmith.blackjack.Hand;
@@ -10,15 +8,17 @@ import garrettsmith.blackjack.Result;
 import garrettsmith.playingcards.Card;
 import garrettsmith.playingcards.CardList;
 
-public class BaseAgent implements EventHandler {
+public abstract class BaseAgent implements EventHandler {
 
 	private double _purse = 0.0;
+	private boolean _hasDealerCardBeenPrinted = false;
 
 	
 	@Override
 	public void fatalErrorOccurred(Exception e) {
-		// TODO Auto-generated method stub
-		
+		System.err.println("a fatal error occurred: " + e.getMessage());
+		e.printStackTrace();
+		System.exit(1);		
 	}
 
 	@Override
@@ -73,10 +73,7 @@ public class BaseAgent implements EventHandler {
 	}
 
 	@Override
-	public Move offerRegularTurn(Hand hand) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	abstract public Move offerRegularTurn(Hand hand);
 	
 	
 	
@@ -147,6 +144,21 @@ public class BaseAgent implements EventHandler {
 		
 		System.out.println(" (" + Blackjack.calculateBestValue(cards)
 				+ ").");
+	}
+	
+	private void printDealerCard(Hand hand) {
+
+		System.out.println("For this hand the dealer is showing "
+				+ formatCard(hand.getDealerCard()) + ".");
+	}
+	
+	protected void printDealerCardIfNeeded(Hand hand) {
+
+		if (!_hasDealerCardBeenPrinted) {
+
+			printDealerCard(hand);
+			_hasDealerCardBeenPrinted = true;
+		}
 	}
 
 }
