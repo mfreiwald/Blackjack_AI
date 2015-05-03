@@ -2,7 +2,6 @@ package ai.agents.main;
 import garrettsmith.blackjack.Blackjack;
 import garrettsmith.blackjack.EventHandler;
 import garrettsmith.blackjack.refimpl.TextPlayer;
-import ai.agents.ReflexAgent;
 
 public class Test {
 

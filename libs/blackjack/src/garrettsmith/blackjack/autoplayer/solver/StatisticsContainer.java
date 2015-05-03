@@ -43,7 +43,9 @@ public class StatisticsContainer
     implements  java.io.Serializable {
 
 
-    public
+	private static final long serialVersionUID = -3834102529655999471L;
+	
+	public
     Object clone() {
 
         // TODO implement
@@ -90,22 +92,7 @@ public class StatisticsContainer
                          int initialHandValue,
                          boolean isSoft,
                          int dealerPublicValue ) {
-
-        _isSoft = isSoft;
-        _playerValue = initialHandValue;
-        _path = path;
-        _dealerValue = dealerPublicValue;
     }
-
-
-    private
-    StatisticsContainer() {}
-
-
-    private int             _playerValue = -1;
-    private int             _dealerValue = -1;
-    private boolean         _isSoft      = false;
-    private String          _path        = null;
 
     private int             _count       = 0;
     private double          _cumulativeResult = 0.0;

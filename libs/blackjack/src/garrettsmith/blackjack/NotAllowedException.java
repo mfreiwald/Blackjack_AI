@@ -35,7 +35,9 @@ package garrettsmith.blackjack;
 public class NotAllowedException
     extends RuntimeException {
 
-    NotAllowedException() {
+	private static final long serialVersionUID = 9059998762932853354L;
+
+	NotAllowedException() {
         super();
     }
     
