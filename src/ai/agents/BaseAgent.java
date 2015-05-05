@@ -34,7 +34,7 @@ public abstract class BaseAgent implements EventHandler {
 
 		GameLog.println();
 		GameLog.println("Game Over");
-		GameLog.print(this.name + " ");
+		GameLog.print(" " + this.name + " ");
 		
 		if (Result.PUSH.equals(result)) {
 			GameLog.println("pushed: 0.0");
@@ -45,18 +45,18 @@ public abstract class BaseAgent implements EventHandler {
 		} else if (Result.LATE_SURRENDER.equals(result)) {
 			GameLog.println("surrendered: " + Double.toString(gain));
 		} else if (Result.DEALER_BLACKJACK.equals(result)) {
-			GameLog.println("lost: " + Double.toString(gain)
-					+ "; the dealer had a blackjack");
+			GameLog.println("lost: " + Double.toString(gain));
+			GameLog.println(" Dealer had a blackjack");
 		} else if (Result.BUSTED.equals(result)) {
 			GameLog.println("BUSTED: " + Double.toString(gain));
 		} else if (Result.DEALER_BUSTED.equals(result)) {
-			GameLog.println("won; the dealer BUSTED: "
+			GameLog.println("won");
+			GameLog.println(" Dealer BUSTED: "
 					+ Double.toString(gain));
 		} else if (Result.BLACKJACK.equals(result)) {
-			System.out
-					.println("got BLACKJACK!: " + Double.toString(gain));
+			GameLog.println("got BLACKJACK!: " + Double.toString(gain));
 		} else if (Result.BLACKJACK_PUSH.equals(result)) {
-			GameLog.println("pushed, you BOTH had blackjack: "
+			GameLog.println("pushed, BOTH had blackjack: "
 					+ Double.toString(gain));
 		} else {
 			throw new IllegalArgumentException("unknown value of parameter "
@@ -67,13 +67,15 @@ public abstract class BaseAgent implements EventHandler {
 		printCards(dealerCards);
 		GameLog.println(" ("
 				+ Integer.toString(Blackjack.calculateBestValue(dealerCards))
-				+ "),");
+				+ ")");
 		
 		GameLog.print(this.name + ": ");
 		printCards(hand.getCards());
 		GameLog.println(" (" + Blackjack.calculateBestValue(hand.getCards())
-				+ ").");
+				+ ")");
 		_purse += gain;
+		
+		GameLog.println();
 		GameLog.println(this.name + " have " + Double.toString(_purse)
 				+ " in the purse.");
 	}

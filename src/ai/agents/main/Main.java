@@ -6,7 +6,7 @@ import ai.agents.ReflexAgent;
 
 public class Main {
 
-	public static final int ROUNDS = 1;
+	public static final int ROUNDS = 3;
 	
 	
 	
@@ -29,11 +29,12 @@ public class Main {
 	
 	private static boolean playGame() {
 		roundsPlayed++;
-		GameLog.println("New Game ("+roundsPlayed+")");
+		GameLog.println("================ New Game ("+roundsPlayed+") ======================");
 		
 		
 		blackjack.playGame(agent, wager);
 		
+		GameLog.println("====================================================");
 		GameLog.println();
 		if(Main.roundsPlayed == Main.ROUNDS) {
 			return false;
