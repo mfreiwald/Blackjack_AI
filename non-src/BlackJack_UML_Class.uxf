@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.2">
+  <zoom_level>4</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>264</x>
+      <y>596</y>
+      <w>84</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>ai.agents::ReflexAgent
+--
++&lt;&lt;constructor&gt;&gt;ReflexAgent()
++offerRegularTurn(hand: Hand): Move
+group=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>196</x>
+      <y>0</y>
+      <w>928</w>
+      <h>408</h>
+    </coordinates>
+    <panel_attributes>Game</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>208</x>
+      <y>460</y>
+      <w>204</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;abstract&gt;&gt;
+ai.agents::BaseAgent
+--
++name: String
+-_purse: Double
+-_hasDealerCardBeenPrinted: Boolean
+--
++&lt;&lt;constructor&gt;&gt;BaseAgent(name: String)
++fatalErrorOccurred(e: Exception)
++handFinished(hand: Hand, gain: Double, result: Result, dealerCards: CardList)
++offerEarlySurrender(hand: Hand): boolean
+/+offerRegularTurn(hand: Hand): Move/
+_-formatCard(card: Card): String_
+_#printCards(cards: CardList)_
+_#printPoints(hand: Hand)_
+-printDealerCard(hand: Hand)
+#printDealerCardIfNeeded(hand: Hand)
+#printPlayerCards(hand: Hand)
+
+group=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>300</x>
+      <y>568</y>
+      <w>12</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;
+group=2</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>208</x>
+      <y>336</y>
+      <w>204</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+libs.blackjack.src.garrettsmith.blackjack::EventHandler
+--
++fatalErrorOccurred(e: Exception)
++handFinished(hand: Hand, gain: Double, result: Result, dealerCards: CardList)
++offerEarlySurrender(hand: Hand): Boolean
++offerRegularTurn(hand: Hand): Move
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>200</x>
+      <y>436</y>
+      <w>224</w>
+      <h>204</h>
+    </coordinates>
+    <panel_attributes>Agents
+group=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>304</x>
+      <y>380</y>
+      <w>12</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;200.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>216</x>
+      <y>48</y>
+      <w>128</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>libs.blackjack.src.garrettsmith.playingcards::Card
+--
+-_suit: Suit
+-_value: Value
+-_color: Color
+-_hashCode: int
+--
++&lt;&lt;constructor&gt;&gt;Card()
++&lt;&lt;constructor&gt;&gt;Card(value: Value, suit: Suit)
++equals(object Object): Boolean
++getColor(): Color
++getSuit(): Suit
++getValue(): Value
++hashCode(): Integer
++toString(): String
+
+{innerclass
+_+Color_
+innerclass}
+{innerclass
+_+Suit_
+innerclass}
+{innerclass
+_+Value_
+innerclass}
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>396</x>
+      <y>48</y>
+      <w>144</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>libs.blackjack.src.garrettsmith.playingcards::CardList
+--
+_-serialVersionUID: Long_
+--
++&lt;&lt;constructor&gt;&gt;CardList()
++&lt;&lt;constructor&gt;&gt;CardList(capacity: Integer)
++&lt;&lt;constructor&gt;&gt;CardList(cards: CardList)
+--
++add(o: Card): Boolean
++getCard(index: Integer): Card
++removeCard(i: Integer): Card</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>340</x>
+      <y>56</y>
+      <w>64</w>
+      <h>12</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>140.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>440</x>
+      <y>136</y>
+      <w>272</w>
+      <h>264</h>
+    </coordinates>
+    <panel_attributes>libs.blackjack.src.garrettsmith.blackjack::Hand
+--
+-_cards: CardList
+-_blackjack: Blackjack
+-_isPlayerDone: Boolean
+-_isDealerPlayNeeded: Boolean
+-_wager: Double
+-_splitCounter: SplitCounter
+-_isEvaluationNeeded: Boolean
+--
+~&lt;&lt;constructor&gt;&gt;Hand(wager: Double, blackjack: Blackjack, cards: CardList)
+-&lt;&lt;constructor&gt;&gt;Hand(wager: Double, blackjack: Blackjack, newCards: CardList, splitCounter: SplitCounter)
++getBestValue(): Integer
++getValue(): Integer
++getCards(): CardList
++getDealerCard(): Card
++getDealerValue(): Integer
++isBusted(): Boolean
++isDoubleDownAllowd(): Boolean
++isStandAllowed(): Boolean
++getWager(): Double
++isMoveAllowed(move: Move): Boolea
++isHitAllowed(): Boolean
++isSoft(): Boolean
++isSplitAllowed(): Boolean
++toString(): String
++isSurrenderAllowed(): Boolean
+~doubleDown() {throws NotAllowedException, NoMoreCardsException}
+~isInPlay(): Boolean
+~isEvaluationNeeded(): Boolean
+~surrender()
+~isDealerPlayNeeded(): Boolean
+~getSplitCount(): Integer
+~hit() {throws NotAllowedException, NoMoreCardsException}
+~isPlayerDone(): Boolean
+~split(): Hand
+~stand() {throws NotAllowedException} 
+~addCard()
+-hasSplit(): Boolean
+
+{innerclass
+-SplitCounter
+innerclass}</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>536</x>
+      <y>56</y>
+      <w>60</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>130.0;200.0;130.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>968</x>
+      <y>240</y>
+      <w>136</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+libs.blackjack.src.garrettsmith.playingcards::Deck
+--
+/+getAllCards(): List&lt;Card&gt;/
+/+size(): Integer/
+/+getNumCardsOfType(color: Card.Color)/
+/+getNumCardsOfType(suit: Card.Suit)/
+/+getNumCardsOfType(value: Card.Value)/
+group=4</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>964</x>
+      <y>328</y>
+      <w>152</w>
+      <h>76</h>
+    </coordinates>
+    <panel_attributes>libs.blackjack.src.garrettsmith.playingcards::StandardDeck
+--
+_cards: List&lt;Card&gt;
+_+DECK: StandardDeck_
+--
+-&lt;&lt;constructor&gt;&gt;StandardDeck()
++getAllCards(): List&lt;Card&gt;
++size(): Integer
++toString(): String
++getNumCardsOfType(color: Color): Integer
++getNumCardsOfType(suit: Suit): Integer
++getNumCardsOfType(value: Value): Integer
+group=4</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>724</x>
+      <y>56</y>
+      <w>176</w>
+      <h>196</h>
+    </coordinates>
+    <panel_attributes>libs.blackjack.src.garrettsmith.blackjack::Blackjack
+--
+-_cards: CardContainer
+-_dealerCards: CardList
+-_rules: Rules
+-_handsToPlay: ArrayList&lt;Hand&gt;
+-_handsToEvaluate: ArrayList&lt;Hand&gt;
+--
++&lt;&lt;constructor&gt;&gt;Blackjack()
++&lt;&lt;constructor&gt;&gt;Blackjack(rules: Rules)
+_+calculateBestValue(cards: CardList): Integer_
+_~cardsToString(cards: CardList): String_
+_~cardToString(card: Card): String_
+_+calculateValue(card: Card): Integer_
+_+calculateValue(cards: CardList): Integer_
++getRules(): Rules
+_+isNonAceFaceCard(card: Card): Boolean_
+_+isBlackjack(cards: CardList): Boolean_
+_+isSoft(cards: CardList): Boolean_
++playGame(handler: EventHndler, wager: Double)
++setRules(rules: Rules)
+~getDealerCard(): Card
+~getCard(): Card {throws NoMoreCardsException}
+~setCards(cards: CardContainer)
+-isDealerPlayNeeded(hands: ArrayList&lt;Hand&gt;): Boolean
+-evaluateOutcome(dealerValue: Integer, handler: EventHandler)
+-isBlackjack(hand: Hand, handler: EventHandler): Boolean
+-offerEarlySurrender(hand: Hand, handler: EventHandler): Boolean
+-dealInitialCards(wager: Double): Hand
+-playDealerHand(): Integer
+-playTurn(handler: EventHandler, hand: Hand)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>912</x>
+      <y>56</y>
+      <w>204</w>
+      <h>172</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+libs.blackjack.src.garrettsmith.blackjack::Move
+--
+_+HIT: Move_
+_+STAND: Move_
+_+SURRENDER: Move_
+_+DOUBLE: Move_
+_+SPLIT: Move_
+--
++value(): Integer
++execute(hand: Hand, handler: EventHandler, dealerCards: CardList)
+
+{innerclass
+&lt;&lt;abstract&gt;&gt;
+BaseMove {implements Move}
+--
+/+value(): Integer/
++hashCode(): Integer
++equals(o: Object): Boolean
++execute(hand: Hand, handler: EventHandler, dealerCards: CardList): Hand
+/#doMove(hand: Hand, handler: EventHandler, dealerCards: CardList): Hand
+innerclass}
+{innerclass
+Hit {extends BaseMove}
+innerclass}
+{innerclass
+Stand {extends BaseMove}
+innerclass}
+{innerclass
+Surrender {extends BaseMove}
+innerclass}
+{innerclass
+Double {extends BaseMove}
+innerclass}
+{innerclass
+Split {extends BaseMove}
+innerclass}</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1028</x>
+      <y>292</y>
+      <w>12</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.
+group=4</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>324</x>
+      <y>24</y>
+      <w>428</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>1050.0;80.0;1050.0;10.0;10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>692</x>
+      <y>68</y>
+      <w>40</w>
+      <h>76</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;170.0;10.0;10.0;80.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>520</x>
+      <y>36</y>
+      <w>216</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>520.0;50.0;520.0;10.0;10.0;10.0;10.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>848</x>
+      <y>40</y>
+      <w>88</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>200.0;40.0;200.0;10.0;10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>408</x>
+      <y>80</y>
+      <w>744</w>
+      <h>416</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;1020.0;1840.0;1010.0;1840.0;10.0;1770.0;10.0</additional_attributes>
+  </element>
+</diagram>
