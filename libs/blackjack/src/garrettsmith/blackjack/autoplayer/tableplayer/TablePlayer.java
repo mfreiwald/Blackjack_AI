@@ -132,7 +132,6 @@ public class TablePlayer
     String getStatus() {
 
         StringBuffer result = new StringBuffer();
-        String stoppedStatus = "";
         result.append( "Start Time:                " + _startDate.toString()
                                                                  + _SEPARATOR );
         if ( _stopDate != null ) {

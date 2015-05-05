@@ -156,13 +156,19 @@ System.out.println( "propertiesFile=" + options.propertiesFile + ", portNumber="
     public static
     void signalStop()
         throws IOException, SocketException {
-        DatagramSocket socket = new DatagramSocket();
-        DatagramPacket packet = new DatagramPacket(
-                                                _STOP_MESSAGE.getBytes(),
-                                                _STOP_MESSAGE.getBytes().length,
-                                                InetAddress.getLocalHost(),
-                                                _LISTEN_PORT );
-        socket.send( packet );
+        try (DatagramSocket socket = new DatagramSocket())
+        {
+	        DatagramPacket packet = new DatagramPacket(
+	                                                _STOP_MESSAGE.getBytes(),
+	                                                _STOP_MESSAGE.getBytes().length,
+	                                                InetAddress.getLocalHost(),
+	                                                _LISTEN_PORT );
+	        socket.send( packet );
+        }
+        catch (Exception ex)
+        {
+        	throw ex;
+        }
     }
 
     public
@@ -176,7 +182,6 @@ System.out.println( "propertiesFile=" + options.propertiesFile + ", portNumber="
                     _checkThread.wait();
                 }
             }
-            int i;
             while ( this.shouldSolve() ) {
                 _blackjack.playGame( _player, 1.0 );
             }
@@ -293,7 +298,6 @@ System.out.println( "propertiesFile=" + options.propertiesFile + ", portNumber="
             _solverThread = solverThread;
         }
 
-        private int               _id            = -1;
         private AutoPlayer        _autoPlayer    = null;
         private Thread            _solverThread  = null;
         private volatile boolean  _started       = false;

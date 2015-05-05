@@ -47,7 +47,7 @@ import garrettsmith.playingcards.Card.Value;
 public class StandardDeck
     implements Deck {
 
-    final List _cards;
+    final List<Card> _cards;
 
     /**
 	 * Singleton instance of this immutable deck.
@@ -60,7 +60,7 @@ public class StandardDeck
      * @return a nonrandom list of all 52 cards contained in a fresh deck.
      */
     public
-    List getAllCards() {
+    List<Card> getAllCards() {
         return _cards;
     }
 
@@ -85,7 +85,7 @@ public class StandardDeck
     }
 
     private StandardDeck() {
-        ArrayList cards = new ArrayList( 52 );
+        ArrayList<Card> cards = new ArrayList<Card>( 52 );
         cards.add( new Card( Card.Value.TWO, Card.Suit.SPADE ) );
         cards.add( new Card( Card.Value.THREE, Card.Suit.SPADE ) );
         cards.add( new Card( Card.Value.FOUR, Card.Suit.SPADE ) );

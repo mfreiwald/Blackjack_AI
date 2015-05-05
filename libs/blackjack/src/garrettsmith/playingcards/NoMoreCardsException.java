@@ -35,7 +35,9 @@ package garrettsmith.playingcards;
  */
 public class NoMoreCardsException extends RuntimeException {
 
-    /**
+	private static final long serialVersionUID = -3362562726119804744L;
+
+	/**
      * Creates an exception with the specified detail message.
      *
      * @param msg English description of the condition that caused the

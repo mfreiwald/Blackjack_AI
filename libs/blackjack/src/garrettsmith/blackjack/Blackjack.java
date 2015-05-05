@@ -43,8 +43,8 @@ public class Blackjack {
     private             CardList        _dealerCards = new CardList();
     private             Rules           _rules     = null;
     
-    private             ArrayList       _handsToPlay     = new ArrayList();
-    private             ArrayList       _handsToEvaluate = new ArrayList();
+    private             ArrayList<Hand>       _handsToPlay     = new ArrayList<Hand>();
+    private             ArrayList<Hand>       _handsToEvaluate = new ArrayList<Hand>();
 
     /**
      * Creates a new Blackjack game simulator with the default {@link Rules}.
@@ -275,7 +275,7 @@ public class Blackjack {
         _cards = cards;
     }
 
-    private boolean isDealerPlayNeeded( final ArrayList hands ) {
+    private boolean isDealerPlayNeeded( final ArrayList<Hand> hands ) {
         for ( int i = 0; i < hands.size(); i++ ) {
             if ( ((Hand) hands.get( i )).isDealerPlayNeeded() ) return true;
         }
