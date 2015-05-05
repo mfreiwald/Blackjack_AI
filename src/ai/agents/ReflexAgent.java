@@ -7,14 +7,18 @@ import java.util.Random;
 
 public class ReflexAgent extends BaseAgent {
 
+	
+	public ReflexAgent() {
+		super("ReflexAgent");
+	}
+	
 	@Override
 	public Move offerRegularTurn(Hand hand) {
+		
 		printDealerCardIfNeeded(hand);
-		System.out.print("For this hand you have ");
-		printCards(hand.getCards());
-		System.out.println(" (" + (hand.isSoft() ? "soft " : "")
-				+ Integer.toString(hand.getBestValue()) + ").");
-				
+		printPlayerCards(hand);
+		
+		
 		int possibilities = 4;
 		Random r = new Random();
 		while (true) {

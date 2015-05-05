@@ -1,5 +1,6 @@
 package ai.agents;
 
+import ai.agents.main.GameLog;
 import garrettsmith.blackjack.Blackjack;
 import garrettsmith.blackjack.EventHandler;
 import garrettsmith.blackjack.Hand;
@@ -10,13 +11,19 @@ import garrettsmith.playingcards.CardList;
 
 public abstract class BaseAgent implements EventHandler {
 
+	public final String name;
+	
 	private double _purse = 0.0;
 	private boolean _hasDealerCardBeenPrinted = false;
-
+	
+	public BaseAgent(String name) {
+		this.name = name;
+	}
+	
 	
 	@Override
 	public void fatalErrorOccurred(Exception e) {
-		System.err.println("a fatal error occurred: " + e.getMessage());
+		GameLog.err("a fatal error occurred: " + e.getMessage());
 		e.printStackTrace();
 		System.exit(1);		
 	}
@@ -25,50 +32,56 @@ public abstract class BaseAgent implements EventHandler {
 	public void handFinished(Hand hand, double gain, Result result,
 			CardList dealerCards) {
 
-		System.out.print("game over: you ");
+		GameLog.println();
+		GameLog.println("Game Over");
+		GameLog.print(this.name + " ");
+		
 		if (Result.PUSH.equals(result)) {
-			System.out.println("pushed: 0.0");
+			GameLog.println("pushed: 0.0");
 		} else if (Result.WIN.equals(result)) {
-			System.out.println("won: " + Double.toString(gain));
+			GameLog.println("won: " + Double.toString(gain));
 		} else if (Result.LOSE.equals(result)) {
-			System.out.println("lost: " + Double.toString(gain));
+			GameLog.println("lost: " + Double.toString(gain));
 		} else if (Result.LATE_SURRENDER.equals(result)) {
-			System.out.println("surrendered: " + Double.toString(gain));
+			GameLog.println("surrendered: " + Double.toString(gain));
 		} else if (Result.DEALER_BLACKJACK.equals(result)) {
-			System.out.println("lost: " + Double.toString(gain)
+			GameLog.println("lost: " + Double.toString(gain)
 					+ "; the dealer had a blackjack");
 		} else if (Result.BUSTED.equals(result)) {
-			System.out.println("BUSTED: " + Double.toString(gain));
+			GameLog.println("BUSTED: " + Double.toString(gain));
 		} else if (Result.DEALER_BUSTED.equals(result)) {
-			System.out.println("won; the dealer BUSTED: "
+			GameLog.println("won; the dealer BUSTED: "
 					+ Double.toString(gain));
 		} else if (Result.BLACKJACK.equals(result)) {
 			System.out
 					.println("got BLACKJACK!: " + Double.toString(gain));
 		} else if (Result.BLACKJACK_PUSH.equals(result)) {
-			System.out.println("pushed, you BOTH had blackjack: "
+			GameLog.println("pushed, you BOTH had blackjack: "
 					+ Double.toString(gain));
 		} else {
 			throw new IllegalArgumentException("unknown value of parameter "
 					+ "result: " + result.value());
 		}
-		System.out.print("In the end, the dealer had ");
+		
+		GameLog.print("Dealer: ");
 		printCards(dealerCards);
-		System.out.println(" ("
+		GameLog.println(" ("
 				+ Integer.toString(Blackjack.calculateBestValue(dealerCards))
 				+ "),");
-		System.out.print("and you had ");
+		
+		GameLog.print(this.name + ": ");
 		printCards(hand.getCards());
-		System.out.println(" (" + Blackjack.calculateBestValue(hand.getCards())
+		GameLog.println(" (" + Blackjack.calculateBestValue(hand.getCards())
 				+ ").");
 		_purse += gain;
-		System.out.println("You have " + Double.toString(_purse)
-				+ " in your purse.");
+		GameLog.println(this.name + " have " + Double.toString(_purse)
+				+ " in the purse.");
 	}
 
 	@Override
 	public boolean offerEarlySurrender(Hand hand) {
 		// TODO Auto-generated method stub
+		GameLog.println("offerEarlySurrender not implemented..");
 		return false;
 	}
 
@@ -80,51 +93,67 @@ public abstract class BaseAgent implements EventHandler {
 	private static String formatCard(Card card) {
 
 		if (Card.Value.ACE.equals(card.getValue())) {
-
-			return "an ace";
+			return "A";
+			//return "an ace";
 		} else if (Card.Value.KING.equals(card.getValue())) {
-
-			return "a king";
+			return "K";
+			//return "a king";
 		} else if (Card.Value.QUEEN.equals(card.getValue())) {
-
-			return "a queen";
+			return "Q";
+			//return "a queen";
 		} else if (Card.Value.JACK.equals(card.getValue())) {
-
-			return "a jack";
+			return "J";
+			//return "a jack";
 		} else if (Card.Value.TEN.equals(card.getValue())) {
-
-			return "a ten";
+			return "10";
+			//return "a ten";
 		} else if (Card.Value.NINE.equals(card.getValue())) {
-
-			return "a nine";
+			return "9";
+			//return "a nine";
 		} else if (Card.Value.EIGHT.equals(card.getValue())) {
-
-			return "an eight";
+			return "8";
+			//return "an eight";
 		} else if (Card.Value.SEVEN.equals(card.getValue())) {
-
-			return "a seven";
+			return "7";
+			//return "a seven";
 		} else if (Card.Value.SIX.equals(card.getValue())) {
-
-			return "a six";
+			return "6";
+			//return "a six";
 		} else if (Card.Value.FIVE.equals(card.getValue())) {
-
-			return "a five";
+			return "5";
+			//return "a five";
 		} else if (Card.Value.FOUR.equals(card.getValue())) {
-
-			return "a four";
+			return "4";
+			//return "a four";
 		} else if (Card.Value.THREE.equals(card.getValue())) {
-
-			return "a three";
+			return "3";
+			//return "a three";
 		} else if (Card.Value.TWO.equals(card.getValue())) {
-
-			return "a two";
+			return "2";
+			//return "a two";
 		}
 		throw new IllegalArgumentException("unknown card type: "
 				+ card.toString());
 	}
 	
 	protected static void printCards(CardList cards) {
+		GameLog.print("[");
+		Card card;
+		for (int i = 0; i < cards.size(); i++) {
 
+			card = (Card) cards.get(i);
+
+			if (i == cards.size() - 1) {
+				GameLog.print(formatCard(card));
+			} else {
+				GameLog.print(formatCard(card) + ", ");
+			}
+		}
+		
+		GameLog.print("] ");
+		
+		
+		/*
 		Card card;
 		for (int i = 0; i < cards.size(); i++) {
 
@@ -132,24 +161,35 @@ public abstract class BaseAgent implements EventHandler {
 
 			if (i < cards.size() - 2) {
 
-				System.out.print(formatCard(card) + ", ");
+				GameLog.print(formatCard(card) + ", ");
 			} else if (i == cards.size() - 2) {
 
-				System.out.print(formatCard(card) + " ");
+				GameLog.print(formatCard(card) + " ");
 			} else {
 
-				System.out.print("and " + formatCard(card));
+				GameLog.print("and " + formatCard(card));
 			}
 		}
 		
-		System.out.println(" (" + Blackjack.calculateBestValue(cards)
-				+ ").");
+		GameLog.println(" (" + Blackjack.calculateBestValue(cards)
+				+ ").")
+		*/
+	}
+	
+	protected static void printPoints(Hand hand) {
+		GameLog.println(" (" + (hand.isSoft() ? "soft " : "")
+				+ Integer.toString(hand.getBestValue()) + ")");
 	}
 	
 	private void printDealerCard(Hand hand) {
 
-		System.out.println("For this hand the dealer is showing "
-				+ formatCard(hand.getDealerCard()) + ".");
+		
+		GameLog.print("Dealer: ["
+				+ formatCard(hand.getDealerCard()) + "] ");
+		
+		GameLog.print("(");
+		GameLog.print(hand.getDealerValue());
+		GameLog.println(")");
 	}
 	
 	protected void printDealerCardIfNeeded(Hand hand) {
@@ -159,6 +199,14 @@ public abstract class BaseAgent implements EventHandler {
 			printDealerCard(hand);
 			_hasDealerCardBeenPrinted = true;
 		}
+	}
+	
+	protected void printPlayerCards(Hand hand) {
+		GameLog.print(this.name + ": ");
+		
+		BaseAgent.printCards(hand.getCards());
+		BaseAgent.printPoints(hand);
+		
 	}
 
 }

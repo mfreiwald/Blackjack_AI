@@ -6,10 +6,13 @@ import ai.agents.ReflexAgent;
 
 public class Main {
 
-	public static final int ROUNDS = 5;
+	public static final int ROUNDS = 1;
+	
+	
+	
+	
 	
 	private static int roundsPlayed = 0;
-
 	private static double wager = 1.0;
 	private static BaseAgent agent = null;
 	private static Blackjack blackjack = new Blackjack();
@@ -26,12 +29,12 @@ public class Main {
 	
 	private static boolean playGame() {
 		roundsPlayed++;
-		System.out.println("New Game ("+roundsPlayed+")");
+		GameLog.println("New Game ("+roundsPlayed+")");
 		
 		
 		blackjack.playGame(agent, wager);
 		
-		System.out.println();
+		GameLog.println();
 		if(Main.roundsPlayed == Main.ROUNDS) {
 			return false;
 		} else {
