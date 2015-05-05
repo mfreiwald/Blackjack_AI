@@ -1,6 +1,7 @@
 package ai.agents.main;
 
 import garrettsmith.blackjack.Blackjack;
+import ai.agents.AlwaysStandAgent;
 import ai.agents.BaseAgent;
 import ai.agents.ReflexAgent;
 
@@ -19,7 +20,7 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		agent = new ReflexAgent();
+		agent = new AlwaysStandAgent();
 		
 		while(playGame()) {
 			/* nothing do to */
