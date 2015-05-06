@@ -20,6 +20,16 @@ public abstract class BaseAgent implements EventHandler {
 		this.name = name;
 	}
 	
+	public void newGame() {
+		this._hasDealerCardBeenPrinted = false;
+	}
+	
+	abstract public Move playTurn(Hand hand);
+	
+	public void gameEnd(Hand hand, double gain, Result result,
+			CardList dealerCards) {
+		
+	}
 	
 	@Override
 	public void fatalErrorOccurred(Exception e) {
@@ -78,6 +88,8 @@ public abstract class BaseAgent implements EventHandler {
 		GameLog.println();
 		GameLog.println(this.name + " have " + Double.toString(_purse)
 				+ " in the purse.");
+		
+		this.gameEnd(hand, gain, result, dealerCards);
 	}
 
 	@Override
@@ -88,8 +100,12 @@ public abstract class BaseAgent implements EventHandler {
 	}
 
 	@Override
-	abstract public Move offerRegularTurn(Hand hand);
-	
+	public Move offerRegularTurn(Hand hand) {
+		printDealerCardIfNeeded(hand);
+		printPlayerCards(hand);
+		
+		return playTurn(hand);
+	}
 	
 	
 	private static String formatCard(Card card) {
@@ -137,6 +153,7 @@ public abstract class BaseAgent implements EventHandler {
 		throw new IllegalArgumentException("unknown card type: "
 				+ card.toString());
 	}
+	
 	
 	protected static void printCards(CardList cards) {
 		GameLog.print("[");
@@ -203,12 +220,16 @@ public abstract class BaseAgent implements EventHandler {
 		}
 	}
 	
-	protected void printPlayerCards(Hand hand) {
+	public void printPlayerCards(Hand hand) {
 		GameLog.print(this.name + ": ");
 		
 		BaseAgent.printCards(hand.getCards());
 		BaseAgent.printPoints(hand);
 		
+	}
+	
+	public double getPurse() {
+		return this._purse;
 	}
 
 }

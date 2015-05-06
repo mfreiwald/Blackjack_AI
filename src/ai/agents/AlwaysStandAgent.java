@@ -10,7 +10,7 @@ public class AlwaysStandAgent extends BaseAgent {
 	}
 	
 	@Override
-	public Move offerRegularTurn(Hand hand) {
+	public Move playTurn(Hand hand) {
 		
 		printDealerCardIfNeeded(hand);
 		printPlayerCards(hand);

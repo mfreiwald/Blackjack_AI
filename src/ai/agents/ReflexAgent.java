@@ -13,10 +13,9 @@ public class ReflexAgent extends BaseAgent {
 	}
 	
 	@Override
-	public Move offerRegularTurn(Hand hand) {
+	public Move playTurn(Hand hand) {
 		
-		printDealerCardIfNeeded(hand);
-		printPlayerCards(hand);
+		
 		
 		
 		int possibilities = 4;
