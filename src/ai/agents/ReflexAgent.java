@@ -1,6 +1,5 @@
 package ai.agents;
 
-import garrettsmith.blackjack.Blackjack;
 import garrettsmith.blackjack.Hand;
 import garrettsmith.blackjack.Move;
 
@@ -15,10 +14,6 @@ public class ReflexAgent extends BaseAgent {
 	
 	@Override
 	public Move playTurn(Hand hand) {
-		
-		
-		
-		
 		int possibilities = 4;
 		Random r = new Random();
 		while (true) {

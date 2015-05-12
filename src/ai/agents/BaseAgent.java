@@ -19,6 +19,7 @@ public abstract class BaseAgent extends NotificationObserver implements EventHan
 	private double _purse = 0.0;
 	private boolean _hasDealerCardBeenPrinted = false;
 	
+	
 	public BaseAgent(String name) {
 		this.name = name;
 		GameNotifications.register(this);

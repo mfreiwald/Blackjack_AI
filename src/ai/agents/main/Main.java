@@ -26,7 +26,7 @@ public class Main extends Thread {
 			new Main(new SaveAgent(), ROUNDS, Level.ERROR),
 			new Main(new ReflexAgent(), ROUNDS, Level.ERROR),
 			new Main(new AlwaysStandAgent(), ROUNDS, Level.ERROR),
-			new Main(new CardCountingAgent(), ROUNDS, Level.ERROR)
+			new Main(new HighLowAgent(), ROUNDS, Level.ERROR)
 		};
 		runAgentsInThread(agents);
 		

@@ -18,7 +18,7 @@ import garrettsmith.playingcards.CardList;
  * @author michael
  *
  */
-public class CardCountingAgent extends BaseAgent {
+public class HighLowAgent extends BaseAgent {
 
 	int runningCount = 0;
 	int startValue = 0;
@@ -26,10 +26,8 @@ public class CardCountingAgent extends BaseAgent {
 	final int maxCards = 52*6;
 	int remainingCards = 52*6;
 	
-	public CardCountingAgent() {
-		super("CardCountingAgent");
-		
-		
+	public HighLowAgent() {
+		super("HighLowAgent");
 	}
 	
 	@Override
@@ -88,9 +86,10 @@ public class CardCountingAgent extends BaseAgent {
 			this.wager++;
 		} else if(realCount < 0){
 			this.wager--;
+			if(this.wager < 1.0) {
+				this.wager = 1.0;
+			}
 		}
-		
-
 	}
 	
 	private void firstTurn(Hand hand) {
