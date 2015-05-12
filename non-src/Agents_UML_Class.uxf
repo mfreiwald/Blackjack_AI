@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.2">
+  <zoom_level>4</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>184</x>
+      <y>352</y>
+      <w>100</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>ai.agents::ReflexAgent
+--
++&lt;&lt;constructor&gt;&gt;ReflexAgent()
++offerRegularTurn(hand: Hand): Move</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>344</x>
+      <y>216</y>
+      <w>204</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;abstract&gt;&gt;
+ai.agents::BaseAgent
+--
++name: String
+-_purse: Double
+-_hasDealerCardBeenPrinted: Boolean
+--
++&lt;&lt;constructor&gt;&gt;BaseAgent(name: String)
++fatalErrorOccurred(e: Exception)
++handFinished(hand: Hand, gain: Double, result: Result, dealerCards: CardList)
++offerEarlySurrender(hand: Hand): boolean
+/+offerRegularTurn(hand: Hand): Move/
+_-formatCard(card: Card): String_
+_#printCards(cards: CardList)_
+_#printPoints(hand: Hand)_
+-printDealerCard(hand: Hand)
+#printDealerCardIfNeeded(hand: Hand)
+#printPlayerCards(hand: Hand)
+
+group=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>224</x>
+      <y>324</y>
+      <w>224</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;
+</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;30.0;540.0;30.0;540.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>344</x>
+      <y>100</y>
+      <w>204</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+libs.blackjack.src.garrettsmith.blackjack::EventHandler
+--
++fatalErrorOccurred(e: Exception)
++handFinished(hand: Hand, gain: Double, result: Result, dealerCards: CardList)
++offerEarlySurrender(hand: Hand): Boolean
++offerRegularTurn(hand: Hand): Move
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>180</x>
+      <y>188</y>
+      <w>616</w>
+      <h>236</h>
+    </coordinates>
+    <panel_attributes>Agents
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>440</x>
+      <y>144</y>
+      <w>12</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;180.0;10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>288</x>
+      <y>352</y>
+      <w>192</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>ai.agents::CardCountingAgent
+--
++&lt;&lt;constructor&gt;&gt;CardCountingAgent()
++playTurn(hand: Hand): Move
++gameEnd(hand: Hand, gain: Double, result: Result, dealerCards: CardList)
+-firstTurn(hand: Hand)
+-countCard(card: Card)
+-countCard(value: Integer)
+_#cardValue(card: Card): Integer_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>484</x>
+      <y>352</y>
+      <w>192</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>ai.agents::DealerLearningAgent
+--
++&lt;&lt;constructor&gt;&gt;DealerLearningAgent()
++playTurn(hand: Hand): Move
++gameEnd(hand: Hand, gain: Double, result: Result, dealerCards: CardList)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>680</x>
+      <y>352</y>
+      <w>100</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>ai.agents::SaveAgent
+--
++&lt;&lt;constructor&gt;&gt;SaveAgent()
++playTurn(hand: Hand): Move
+-evaluateHand(hand: Hand): Boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>436</x>
+      <y>332</y>
+      <w>12</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>436</x>
+      <y>332</y>
+      <w>160</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>380.0;50.0;380.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>584</x>
+      <y>332</y>
+      <w>160</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>380.0;50.0;380.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>
