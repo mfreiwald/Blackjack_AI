@@ -8,26 +8,28 @@ public class Main extends Thread {
 
 	public final int ROUNDS;
 	private int roundsPlayed = 0;
-	private double wager = 1.0;
 	private BaseAgent agent = null;
 	private Blackjack blackjack = new Blackjack();
 
 	public static void main(String[] args) throws InterruptedException {
-
-		Main cca = new Main(new CardCountingAgent(), 5, Level.ALL);
+		
+		/*
+		Main cca = new Main(new CardCountingAgent(), 50, Level.ALL);
 		cca.start();
 		cca.join();
 		System.out.println(cca.agent.name + " purse: " + cca.agent.getPurse());
-
-		/*
-		final int ROUNDS = 10000;
+		*/
+		
+		
+		final int ROUNDS = 5000;
 		Main[] agents = {
 			new Main(new SaveAgent(), ROUNDS, Level.ERROR),
 			new Main(new ReflexAgent(), ROUNDS, Level.ERROR),
-			new Main(new AlwaysStandAgent(), ROUNDS, Level.ERROR)
+			new Main(new AlwaysStandAgent(), ROUNDS, Level.ERROR),
+			new Main(new CardCountingAgent(), ROUNDS, Level.ERROR)
 		};
 		runAgentsInThread(agents);
-		*/
+		
 		
 	}
 	
@@ -71,7 +73,8 @@ public class Main extends Thread {
 		GameLog.println("================ New Game ("+roundsPlayed+") ======================");
 		
 		agent.newGame();
-		blackjack.playGame(agent, wager);
+		
+		blackjack.playGame(agent, agent.wager);
 				
 		GameLog.println("====================================================");
 		GameLog.println();

@@ -1,6 +1,8 @@
 package ai.agents;
 
 import ai.agents.main.GameLog;
+import ai.agents.main.GameNotifications;
+import ai.agents.main.NotificationObserver;
 import garrettsmith.blackjack.Blackjack;
 import garrettsmith.blackjack.EventHandler;
 import garrettsmith.blackjack.Hand;
@@ -9,15 +11,17 @@ import garrettsmith.blackjack.Result;
 import garrettsmith.playingcards.Card;
 import garrettsmith.playingcards.CardList;
 
-public abstract class BaseAgent implements EventHandler {
+public abstract class BaseAgent extends NotificationObserver implements EventHandler {
 
 	public final String name;
-	
+
+	public double wager = 1.0;
 	private double _purse = 0.0;
 	private boolean _hasDealerCardBeenPrinted = false;
 	
 	public BaseAgent(String name) {
 		this.name = name;
+		GameNotifications.register(this);
 	}
 	
 	public void newGame() {
@@ -231,5 +235,6 @@ public abstract class BaseAgent implements EventHandler {
 	public double getPurse() {
 		return this._purse;
 	}
+	
 
 }

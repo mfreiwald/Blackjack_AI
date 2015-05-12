@@ -26,6 +26,8 @@ THE SOFTWARE.
 package garrettsmith.blackjack;
 
 import java.util.*;
+
+import ai.agents.main.GameNotifications;
 import garrettsmith.playingcards.*;
 
 /**
@@ -379,6 +381,7 @@ public class Blackjack {
             value = calculateBestValue( _dealerCards );
             if ( value < 17 ) {
                 _dealerCards.add( getCard() );
+                GameNotifications.dealerGetCard();
             }
             else if ( value > 17 ) {
                 return value;
@@ -395,6 +398,8 @@ public class Blackjack {
                       && !_rules.doesDealerStandOnSoft17()
                       && isSoft( _dealerCards ) ) {
                 _dealerCards.add( getCard() );
+                GameNotifications.dealerGetCard();
+
             }
             else {
                 throw new IllegalStateException();

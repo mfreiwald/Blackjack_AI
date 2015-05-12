@@ -1,5 +1,6 @@
 package ai.agents;
 
+import garrettsmith.blackjack.Blackjack;
 import garrettsmith.blackjack.Hand;
 import garrettsmith.blackjack.Move;
 

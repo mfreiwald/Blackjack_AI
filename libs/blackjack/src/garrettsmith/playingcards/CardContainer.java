@@ -27,6 +27,8 @@ package garrettsmith.playingcards;
 
 import java.util.*;
 
+import ai.agents.main.GameNotifications;
+
 /**
  * Represents a collection of cards, typically comprised of one or more decks.
  * 
@@ -168,6 +170,7 @@ public class CardContainer {
     void resetShuffle() {
         reset();
         shuffle();
+        GameNotifications.dealerCreateNewDecks(_cards.size());
     }
 
     /**
