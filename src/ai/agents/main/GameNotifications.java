@@ -26,13 +26,13 @@ public class GameNotifications {
 			ob.dealerCreateNewDecks(cards);
 		}
 	}
-	
+	/*
 	public static void playerGetCard(Card card) {
 		for(NotificationObserver ob: observers) {
-
+			//ob.playerGetCard(player, card);
 		}
 	}
-	
+	*/
 	public static void dealerGetCard() {
 		for(NotificationObserver ob: observers) {
 			ob.dealerGetCard();

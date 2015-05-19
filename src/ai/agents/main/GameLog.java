@@ -8,21 +8,21 @@ public class GameLog {
 	
 	public static Level level = Level.ALL;
 	
-	public static void println(String s) {
+	public static void println(Object s) {
 		if(GameLog.level == Level.ALL) {
-			System.out.println(s);
+			System.out.println(s.toString());
 		}
 	}
 	
-	public static void print(String s) {
+	public static void print(Object s) {
 		if(GameLog.level == Level.ALL) {
-			System.out.print(s);
+			System.out.print(s.toString());
 		}
 	}
 	
-	public static void err(String s) {
+	public static void err(Object s) {
 		if(GameLog.level != Level.NONE) {
-			System.err.println(s);
+			System.err.println(s.toString());
 		}
 	}
 	
@@ -32,9 +32,5 @@ public class GameLog {
 	
 	public static void print() {
 		print("");
-	}
-	
-	public static void print(int s) {
-		print(Integer.toString(s));
 	}
 }

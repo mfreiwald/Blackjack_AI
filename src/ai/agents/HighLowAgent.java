@@ -1,12 +1,10 @@
 package ai.agents;
 
 import ai.agents.main.GameLog;
-import garrettsmith.blackjack.Blackjack;
 import garrettsmith.blackjack.Hand;
 import garrettsmith.blackjack.Move;
 import garrettsmith.blackjack.Result;
 import garrettsmith.playingcards.Card;
-import garrettsmith.playingcards.Card.Value;
 import garrettsmith.playingcards.CardList;
 
 /**
