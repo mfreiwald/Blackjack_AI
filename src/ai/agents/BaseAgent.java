@@ -19,6 +19,16 @@ public abstract class BaseAgent extends NotificationObserver implements EventHan
 	private double _purse = 0.0;
 	private boolean _hasDealerCardBeenPrinted = false;
 	
+	private int Result_Push = 0;
+	private int Result_Win = 0;
+	private int Result_Lose = 0;
+	private int Result_Late_Surrender = 0;
+	private int Result_Dealer_Blackjack = 0;
+	private int Result_Busted = 0;
+	private int Result_Dealer_Busted = 0;
+	private int Result_Blackjack = 0;
+	private int Result_Blackjack_Push = 0;
+	
 	
 	public BaseAgent(String name) {
 		this.name = name;
@@ -53,26 +63,44 @@ public abstract class BaseAgent extends NotificationObserver implements EventHan
 		
 		if (Result.PUSH.equals(result)) {
 			GameLog.println("pushed: 0.0");
+			this.Result_Push++;
+			
 		} else if (Result.WIN.equals(result)) {
 			GameLog.println("won: " + Double.toString(gain));
+			this.Result_Win++;
+			
 		} else if (Result.LOSE.equals(result)) {
 			GameLog.println("lost: " + Double.toString(gain));
+			this.Result_Lose++;
+			
 		} else if (Result.LATE_SURRENDER.equals(result)) {
 			GameLog.println("surrendered: " + Double.toString(gain));
+			this.Result_Late_Surrender++;
+			
 		} else if (Result.DEALER_BLACKJACK.equals(result)) {
 			GameLog.println("lost: " + Double.toString(gain));
 			GameLog.println(" Dealer had a blackjack");
+			this.Result_Dealer_Blackjack++;
+			
 		} else if (Result.BUSTED.equals(result)) {
 			GameLog.println("BUSTED: " + Double.toString(gain));
+			this.Result_Busted++;
+			
 		} else if (Result.DEALER_BUSTED.equals(result)) {
 			GameLog.println("won");
 			GameLog.println(" Dealer BUSTED: "
 					+ Double.toString(gain));
+			this.Result_Dealer_Busted++;
+			
 		} else if (Result.BLACKJACK.equals(result)) {
 			GameLog.println("got BLACKJACK!: " + Double.toString(gain));
+			this.Result_Blackjack++;
+			
 		} else if (Result.BLACKJACK_PUSH.equals(result)) {
 			GameLog.println("pushed, BOTH had blackjack: "
 					+ Double.toString(gain));
+			this.Result_Blackjack_Push++;
+			
 		} else {
 			throw new IllegalArgumentException("unknown value of parameter "
 					+ "result: " + result.value());
@@ -93,6 +121,7 @@ public abstract class BaseAgent extends NotificationObserver implements EventHan
 		GameLog.println();
 		GameLog.println(this.name + " have " + Double.toString(_purse)
 				+ " in the purse.");
+		
 		
 		this.gameEnd(hand, gain, result, dealerCards);
 	}
@@ -209,9 +238,36 @@ public abstract class BaseAgent extends NotificationObserver implements EventHan
 		
 	}
 	
+	
+	public void printStats() {
+		System.out.println("Push: "+this.Result_Push);
+		System.out.println("Win: "+this.Result_Win);
+		System.out.println("Lose: "+this.Result_Lose);
+		System.out.println("Late Surrender: "+this.Result_Late_Surrender);
+		System.out.println("Dealer Blackjack: "+this.Result_Dealer_Blackjack);
+		System.out.println("Busted: "+this.Result_Busted);
+		System.out.println("Dealer Busted: "+this.Result_Dealer_Busted);
+		System.out.println("Blackjack: "+this.Result_Blackjack);
+		System.out.println("Blackjack Push: "+this.Result_Blackjack_Push);
+
+		System.out.println("Win: " + this.getWins());
+		System.out.println("Lose: "+this.getLose());
+		System.out.println("Push: "+this.getPush());
+	}
+	
 	public double getPurse() {
 		return this._purse;
 	}
 	
+	public int getWins() {
+		return this.Result_Win + this.Result_Blackjack + this.Result_Dealer_Busted + this.Result_Late_Surrender;
+	}
+	
+	public int getLose() {
+		return this.Result_Busted + this.Result_Lose + this.Result_Dealer_Blackjack;
+	}
 
+	public int getPush() {
+		return this.Result_Blackjack_Push + this.Result_Push;
+	}
 }

@@ -14,12 +14,12 @@ public class Main extends Thread {
 	public static void main(String[] args) throws InterruptedException {
 		
 		/*
-		Main cca = new Main(new CardCountingAgent(), 50, Level.ALL);
+		Main cca = new Main(new SaveAgent(), 50, Level.ALL);
 		cca.start();
 		cca.join();
 		System.out.println(cca.agent.name + " purse: " + cca.agent.getPurse());
+		cca.agent.printStats();
 		*/
-		
 		
 		final int ROUNDS = 5000;
 		Main[] agents = {
@@ -49,6 +49,8 @@ public class Main extends Thread {
 		
 		for(Main m: agents) {
 			System.out.println(m.agent.name + " purse: " + m.agent.getPurse());
+			m.agent.printStats();
+			System.out.println();
 		}
 	}
 	
