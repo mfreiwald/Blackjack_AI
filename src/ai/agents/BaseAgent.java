@@ -99,7 +99,6 @@ public abstract class BaseAgent extends NotificationObserver implements EventHan
 
 	@Override
 	public boolean offerEarlySurrender(Hand hand) {
-		// TODO Auto-generated method stub
 		GameLog.println("offerEarlySurrender not implemented..");
 		return false;
 	}
@@ -175,29 +174,6 @@ public abstract class BaseAgent extends NotificationObserver implements EventHan
 		}
 		
 		GameLog.print("] ");
-		
-		
-		/*
-		Card card;
-		for (int i = 0; i < cards.size(); i++) {
-
-			card = (Card) cards.get(i);
-
-			if (i < cards.size() - 2) {
-
-				GameLog.print(formatCard(card) + ", ");
-			} else if (i == cards.size() - 2) {
-
-				GameLog.print(formatCard(card) + " ");
-			} else {
-
-				GameLog.print("and " + formatCard(card));
-			}
-		}
-		
-		GameLog.println(" (" + Blackjack.calculateBestValue(cards)
-				+ ").")
-		*/
 	}
 	
 	protected static void printPoints(Hand hand) {
