@@ -35,7 +35,7 @@ import java.util.*;
  * @version Blackjack v1.0
  * @since Blackjack v1.0
  */
-public final class CardList extends ArrayList<Card> {
+public final class CardList extends ArrayList<Card> implements Comparable<CardList> {
 
 	private static final long serialVersionUID = -5323914906451782987L;
 
@@ -84,5 +84,14 @@ public final class CardList extends ArrayList<Card> {
 	 */
 	public Card removeCard(int i) {
 		return (Card) super.remove( i );
+	}
+	
+	@Override
+	public int compareTo(CardList o) {
+		if(this.equals(o)) {
+			return 0;
+		} else {
+			return 1;
+		}
 	}
 }

@@ -40,7 +40,8 @@ public class HighLowAgent extends BaseAgent {
 		if (evaluateHand(hand)) {
 			return Move.HIT;
 		} else {
-			return Move.STAND;
+			BaseAgent standSoft = new BasicStrategyStandSoftAgent();
+			return standSoft.playTurn(hand);
 		}
 	}
 	

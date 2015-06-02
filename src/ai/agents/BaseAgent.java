@@ -14,7 +14,8 @@ import garrettsmith.playingcards.CardList;
 public abstract class BaseAgent extends NotificationObserver implements EventHandler {
 
 	public final String name;
-
+	private Blackjack game;
+	
 	public double wager = 1.0;
 	private double _purse = 0.0;
 	private boolean _hasDealerCardBeenPrinted = false;
@@ -141,7 +142,7 @@ public abstract class BaseAgent extends NotificationObserver implements EventHan
 	}
 	
 	
-	private static String formatCard(Card card) {
+	public static String formatCard(Card card) {
 
 		if (Card.Value.ACE.equals(card.getValue())) {
 			return "A";
@@ -240,19 +241,19 @@ public abstract class BaseAgent extends NotificationObserver implements EventHan
 	
 	
 	public void printStats() {
-		System.out.println("Push: "+this.Result_Push);
 		System.out.println("Win: "+this.Result_Win);
 		System.out.println("Lose: "+this.Result_Lose);
+		System.out.println("Push: "+this.Result_Push);
 		System.out.println("Late Surrender: "+this.Result_Late_Surrender);
 		System.out.println("Dealer Blackjack: "+this.Result_Dealer_Blackjack);
 		System.out.println("Busted: "+this.Result_Busted);
 		System.out.println("Dealer Busted: "+this.Result_Dealer_Busted);
 		System.out.println("Blackjack: "+this.Result_Blackjack);
 		System.out.println("Blackjack Push: "+this.Result_Blackjack_Push);
-
-		System.out.println("Win: " + this.getWins());
-		System.out.println("Lose: "+this.getLose());
-		System.out.println("Push: "+this.getPush());
+		System.out.println();
+		System.out.println("Sum Win: " + this.getWins());
+		System.out.println("Sum Lose: "+this.getLose());
+		System.out.println("Sum Push: "+this.getPush());
 	}
 	
 	public double getPurse() {
@@ -269,5 +270,13 @@ public abstract class BaseAgent extends NotificationObserver implements EventHan
 
 	public int getPush() {
 		return this.Result_Blackjack_Push + this.Result_Push;
+	}
+	
+	public void setGame(Blackjack game) {
+		this.game = game;
+	}
+	
+	protected Blackjack getGame() {
+		return this.game;
 	}
 }

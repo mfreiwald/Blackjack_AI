@@ -414,5 +414,13 @@ public class Blackjack {
         Hand newHand = move.execute( hand, handler, _dealerCards );
         if ( newHand != null ) _handsToPlay.add( newHand );
     }
+    
+    public Card hintNextCard() {
+    	return _cards.hintNextCard();
+    }
+    
+    public int availableCards() {
+    	return _cards.size();
+    }
 
 } // class Blackjack

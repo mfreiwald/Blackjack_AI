@@ -304,4 +304,7 @@ public class CardContainer {
                      > _cards.size();
     }
 
+    public Card hintNextCard() {
+    	return _cards.get( 0 );
+    }
 }

@@ -6,8 +6,10 @@ import ai.agents.BaseAgent;
 import ai.agents.BasicStrategyStandHardAgent;
 import ai.agents.BasicStrategyStandSoftAgent;
 import ai.agents.HighLowAgent;
+import ai.agents.LearningAgent;
 import ai.agents.ReflexAgent;
 import ai.agents.SaveAgent;
+import ai.agents.WallHackAgent;
 import ai.agents.main.GameLog.Level;
 
 public class Main extends Thread {
@@ -18,24 +20,30 @@ public class Main extends Thread {
 	private Blackjack blackjack = new Blackjack();
 
 	public static void main(String[] args) throws InterruptedException {
+		//testAgent();
+		testAgents();
+	}
 
-		/*
-		 * Main cca = new Main(new SaveAgent(), 50, Level.ALL); cca.start(); cca.join();
-		 * System.out.println(cca.agent.name + " purse: " + cca.agent.getPurse());
-		 * cca.agent.printStats();
-		 */
+	private static void testAgent() throws InterruptedException {
+		Main cca = new Main(new WallHackAgent(), 5000, Level.ALL);
+		cca.start();
+		cca.join();
+		System.out.println(cca.agent.name + " purse: " + cca.agent.getPurse());
+		cca.agent.printStats();
+	}
 
-		final int ROUNDS = 5000;
+	private static void testAgents() {
+		final int ROUNDS = 10000;
 		Main[] agents = {
 				new Main(new SaveAgent(), ROUNDS, Level.ERROR),
-				new Main(new ReflexAgent(), ROUNDS, Level.ERROR),
+				//new Main(new ReflexAgent(), ROUNDS, Level.ERROR),
 				new Main(new AlwaysStandAgent(), ROUNDS, Level.ERROR),
-				new Main(new HighLowAgent(), ROUNDS, Level.ERROR),
+				//new Main(new HighLowAgent(), ROUNDS, Level.ERROR),
 				new Main(new BasicStrategyStandSoftAgent(), ROUNDS, Level.ERROR),
-				new Main(new BasicStrategyStandHardAgent(), ROUNDS, Level.ERROR)
-		};
+				new Main(new BasicStrategyStandHardAgent(), ROUNDS, Level.ERROR),
+				new Main(new WallHackAgent(), ROUNDS, Level.ERROR) };
+				//new Main(new LearningAgent(), ROUNDS, Level.ERROR) };
 		runAgentsInThread(agents);
-
 	}
 
 	private static void runAgentsInThread(Main[] agents) {
@@ -62,6 +70,7 @@ public class Main extends Thread {
 		this.agent = agent;
 		this.ROUNDS = rounds;
 		GameLog.level = level;
+		this.agent.setGame(blackjack);
 	}
 
 	Main(BaseAgent agent, int rounds) {
@@ -76,7 +85,8 @@ public class Main extends Thread {
 
 	private boolean playGame() {
 		roundsPlayed++;
-		GameLog.println("================ New Game (" + roundsPlayed + ") ======================");
+		GameLog.println("================ New Game (" + roundsPlayed
+				+ ") ======================");
 
 		agent.newGame();
 
