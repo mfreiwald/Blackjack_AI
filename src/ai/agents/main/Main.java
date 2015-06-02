@@ -18,14 +18,14 @@ public class Main extends Thread {
 	private int roundsPlayed = 0;
 	private BaseAgent agent = null;
 	private Blackjack blackjack = new Blackjack();
-
+	
 	public static void main(String[] args) throws InterruptedException {
 		//testAgent();
 		testAgents();
 	}
 
 	private static void testAgent() throws InterruptedException {
-		Main cca = new Main(new WallHackAgent(), 5000, Level.ALL);
+		Main cca = new Main(new WallHackAgent(), 1000000, Level.ERROR);
 		cca.start();
 		cca.join();
 		System.out.println(cca.agent.name + " purse: " + cca.agent.getPurse());
@@ -33,7 +33,7 @@ public class Main extends Thread {
 	}
 
 	private static void testAgents() {
-		final int ROUNDS = 10000;
+		final int ROUNDS = 100000;
 		Main[] agents = {
 				new Main(new SaveAgent(), ROUNDS, Level.ERROR),
 				//new Main(new ReflexAgent(), ROUNDS, Level.ERROR),

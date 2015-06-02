@@ -104,7 +104,7 @@ public class LearningAgent extends BaseAgent {
 	}
 	
 	private Move playStandSoft(Hand hand) {
-		BaseAgent standSoft = new BasicStrategyStandSoftAgent();
+		final BaseAgent standSoft = new BasicStrategyStandSoftAgent();
 		return standSoft.playTurn(hand);
 	}
 

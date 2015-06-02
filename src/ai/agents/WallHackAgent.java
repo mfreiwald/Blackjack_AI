@@ -2,7 +2,9 @@ package ai.agents;
 
 import garrettsmith.blackjack.Hand;
 import garrettsmith.blackjack.Move;
+import garrettsmith.blackjack.Result;
 import garrettsmith.playingcards.Card;
+import garrettsmith.playingcards.CardList;
 
 public class WallHackAgent extends BaseAgent {
 
