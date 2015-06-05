@@ -3,6 +3,8 @@ import garrettsmith.blackjack.Blackjack;
 import garrettsmith.blackjack.EventHandler;
 import garrettsmith.blackjack.refimpl.TextPlayer;
 
+import java.util.Arrays;
+
 public class Test {
 
 	public static void main(String[] args) {
@@ -10,7 +12,7 @@ public class Test {
 		EventHandler eventHandler = new TextPlayer();
 
 		Blackjack blackjack = new Blackjack();
-		blackjack.playGame(eventHandler, wager);
+		blackjack.playGame(Arrays.asList(new EventHandler[]{eventHandler}));
 	}
 	
 	

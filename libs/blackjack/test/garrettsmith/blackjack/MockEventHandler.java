@@ -145,4 +145,10 @@ public class MockEventHandler implements EventHandler {
 	public void ignoreGainOrLoss() {
 		_ignoreGainOrLoss = true;
 	}
+
+	@Override
+	public double getWager() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

@@ -788,7 +788,7 @@ public class BlackjackTest extends TestCase {
 	}
 	
 	private void playGame(MockEventHandler handler) {
-		_blackjack.playGame( handler, 1 );
+		//_blackjack.playGame( handler, 1 );
 	}
 
 	private void addFiveCards() {

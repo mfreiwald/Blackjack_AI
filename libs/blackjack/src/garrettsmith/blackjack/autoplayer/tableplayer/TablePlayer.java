@@ -274,6 +274,11 @@ public class TablePlayer
     private File                _dataFile         = null;
     private long                _writeThreshold   = -1;
     private Writer              _output           = null;
+	@Override
+	public double getWager() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 } // class TablePlayer
 
