@@ -6,6 +6,7 @@ import ai.agents.BaseAgent;
 import ai.agents.BasicStrategyStandHardAgent;
 import ai.agents.BasicStrategyStandSoftAgent;
 import ai.agents.HighLowAgent;
+import ai.agents.HitUntilAgent;
 import ai.agents.LearningAgent;
 import ai.agents.ReflexAgent;
 import ai.agents.SaveAgent;
@@ -34,6 +35,8 @@ public class Main extends Thread {
 
 	private static void testAgents() {
 		final int ROUNDS = 100000;
+		
+		
 		Main[] agents = {
 				new Main(new SaveAgent(), ROUNDS, Level.ERROR),
 				//new Main(new ReflexAgent(), ROUNDS, Level.ERROR),
@@ -43,6 +46,18 @@ public class Main extends Thread {
 				new Main(new BasicStrategyStandHardAgent(), ROUNDS, Level.ERROR),
 				new Main(new WallHackAgent(), ROUNDS, Level.ERROR) };
 				//new Main(new LearningAgent(), ROUNDS, Level.ERROR) };
+		
+		/*
+		Main[] agents = {
+				new Main(new HitUntilAgent(13), ROUNDS, Level.ERROR),
+				new Main(new HitUntilAgent(14), ROUNDS, Level.ERROR),
+				new Main(new HitUntilAgent(15), ROUNDS, Level.ERROR),
+				new Main(new HitUntilAgent(16), ROUNDS, Level.ERROR),
+				new Main(new HitUntilAgent(17), ROUNDS, Level.ERROR),
+				new Main(new HitUntilAgent(18), ROUNDS, Level.ERROR),
+				new Main(new HitUntilAgent(19), ROUNDS, Level.ERROR),
+				new Main(new HitUntilAgent(20), ROUNDS, Level.ERROR) };
+			*/	 
 		runAgentsInThread(agents);
 	}
 

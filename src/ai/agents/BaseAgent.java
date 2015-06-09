@@ -241,6 +241,12 @@ public abstract class BaseAgent extends NotificationObserver implements EventHan
 	
 	
 	public void printStats() {
+		printDetailStats();
+		System.out.println();
+		printSumStats();
+	}
+	
+	public void printDetailStats() {
 		System.out.println("Win: "+this.Result_Win);
 		System.out.println("Lose: "+this.Result_Lose);
 		System.out.println("Push: "+this.Result_Push);
@@ -250,7 +256,9 @@ public abstract class BaseAgent extends NotificationObserver implements EventHan
 		System.out.println("Dealer Busted: "+this.Result_Dealer_Busted);
 		System.out.println("Blackjack: "+this.Result_Blackjack);
 		System.out.println("Blackjack Push: "+this.Result_Blackjack_Push);
-		System.out.println();
+	}
+	
+	public void printSumStats() {
 		System.out.println("Sum Win: " + this.getWins());
 		System.out.println("Sum Lose: "+this.getLose());
 		System.out.println("Sum Push: "+this.getPush());
