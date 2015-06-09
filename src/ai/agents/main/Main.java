@@ -1,14 +1,23 @@
 package ai.agents.main;
 
 import garrettsmith.blackjack.Blackjack;
+import garrettsmith.blackjack.EventHandler;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import ai.agents.AlwaysStandAgent;
 import ai.agents.BaseAgent;
 import ai.agents.BasicStrategyStandHardAgent;
 import ai.agents.BasicStrategyStandSoftAgent;
+<<<<<<< HEAD
 import ai.agents.HighLowAgent;
 import ai.agents.HitUntilAgent;
 import ai.agents.LearningAgent;
 import ai.agents.ReflexAgent;
+=======
+>>>>>>> e0cfe3c3c6d050d86149319b521bd1f1c3503519
 import ai.agents.SaveAgent;
 import ai.agents.WallHackAgent;
 import ai.agents.main.GameLog.Level;
@@ -17,24 +26,25 @@ public class Main extends Thread {
 
 	public final int ROUNDS;
 	private int roundsPlayed = 0;
-	private BaseAgent agent = null;
+	private List<BaseAgent> agents = null;
 	private Blackjack blackjack = new Blackjack();
-	
+
 	public static void main(String[] args) throws InterruptedException {
-		//testAgent();
 		testAgents();
 	}
 
 	private static void testAgent() throws InterruptedException {
-		Main cca = new Main(new WallHackAgent(), 1000000, Level.ERROR);
-		cca.start();
-		cca.join();
-		System.out.println(cca.agent.name + " purse: " + cca.agent.getPurse());
-		cca.agent.printStats();
+		Main cca = new Main(Arrays.asList(new BaseAgent[]{new WallHackAgent()}), 1000000);
+		cca.run();
+		for(BaseAgent agent: cca.agents) {
+			System.out.println(agent.name + " purse: " + agent.getPurse());
+			agent.printStats();
+		}
 	}
 
 	private static void testAgents() {
 		final int ROUNDS = 100000;
+<<<<<<< HEAD
 		
 		
 		Main[] agents = {
@@ -59,36 +69,25 @@ public class Main extends Thread {
 				new Main(new HitUntilAgent(20), ROUNDS, Level.ERROR) };
 			*/	 
 		runAgentsInThread(agents);
+=======
+		BaseAgent[] agents = {
+				new SaveAgent(), new AlwaysStandAgent(), new BasicStrategyStandSoftAgent(),
+				new BasicStrategyStandHardAgent(), new WallHackAgent() };
+		new Main(Arrays.asList(agents), ROUNDS).run();
+>>>>>>> e0cfe3c3c6d050d86149319b521bd1f1c3503519
 	}
 
-	private static void runAgentsInThread(Main[] agents) {
-		for (Main m : agents) {
-			m.start();
-		}
 
-		for (Main m : agents) {
-			try {
-				m.join();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		for (Main m : agents) {
-			System.out.println(m.agent.name + " purse: " + m.agent.getPurse());
-			m.agent.printStats();
-			System.out.println();
-		}
-	}
-
-	Main(BaseAgent agent, int rounds, Level level) {
-		this.agent = agent;
+	Main(List<BaseAgent> agents, int rounds, Level level) {
+		this.agents = agents;
 		this.ROUNDS = rounds;
 		GameLog.level = level;
-		this.agent.setGame(blackjack);
+		for(BaseAgent agent : this.agents) {
+			agent.setGame(blackjack);
+		}
 	}
 
-	Main(BaseAgent agent, int rounds) {
+	Main(List<BaseAgent> agent, int rounds) {
 		this(agent, rounds, Level.ALL);
 	}
 
@@ -102,10 +101,12 @@ public class Main extends Thread {
 		roundsPlayed++;
 		GameLog.println("================ New Game (" + roundsPlayed
 				+ ") ======================");
+		for(BaseAgent agent : agents) {
+			agent.newGame();
+		}
+		List<EventHandler> handlers = new ArrayList<EventHandler>(agents);
+		blackjack.playGame(handlers);
 
-		agent.newGame();
-
-		blackjack.playGame(agent, agent.wager);
 
 		GameLog.println("====================================================");
 		GameLog.println();

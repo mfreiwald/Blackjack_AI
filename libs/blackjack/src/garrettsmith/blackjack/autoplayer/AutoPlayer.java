@@ -28,10 +28,10 @@ package garrettsmith.blackjack.autoplayer;
 // Java packages
 import java.io.*;
 import java.net.*;
+import java.util.Arrays;
 
 // third-party packages
 import gnu.getopt.*;
-
 // garrett-smith packages
 import garrettsmith.blackjack.*;
 
@@ -183,7 +183,7 @@ System.out.println( "propertiesFile=" + options.propertiesFile + ", portNumber="
                 }
             }
             while ( this.shouldSolve() ) {
-                _blackjack.playGame( _player, 1.0 );
+                _blackjack.playGame( Arrays.asList(new EventHandler[]{_player}));
             }
             _autoPlayer._player.signalDone();
         }

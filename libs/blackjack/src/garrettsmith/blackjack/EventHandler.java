@@ -86,5 +86,12 @@ public interface EventHandler {
      */
     public
     Move offerRegularTurn( Hand hand );
+    
+    /**
+     * Returns the Wager of the current Agent
+     * @return
+     */
+    public
+    double getWager();
 
 } // interface EventHandler

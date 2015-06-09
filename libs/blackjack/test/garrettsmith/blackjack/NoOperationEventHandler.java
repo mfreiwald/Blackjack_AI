@@ -50,4 +50,9 @@ public final class NoOperationEventHandler
 		return Move.STAND;
 	}
 
+	@Override
+	public double getWager() {
+		return 0;
+	}
+
 }

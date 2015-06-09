@@ -43,6 +43,7 @@ import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
@@ -298,7 +299,7 @@ public class TextPlayer implements EventHandler {
 
 		System.out.println();
 		_hasDealerCardBeenPrinted = false;
-		_blackjack.playGame(this, 1);
+		_blackjack.playGame(Arrays.asList(new EventHandler[]{this}));
 
 		return promptForAnotherGame();
 	}
@@ -542,5 +543,11 @@ public class TextPlayer implements EventHandler {
 		private String rulesPath = null;
 		private boolean argsCorrect = true;
 
+	}
+
+	@Override
+	public double getWager() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

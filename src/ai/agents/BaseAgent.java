@@ -16,7 +16,7 @@ public abstract class BaseAgent extends NotificationObserver implements EventHan
 	public final String name;
 	private Blackjack game;
 	
-	public double wager = 1.0;
+	protected double wager = 1.0;
 	private double _purse = 0.0;
 	private boolean _hasDealerCardBeenPrinted = false;
 	
@@ -286,5 +286,9 @@ public abstract class BaseAgent extends NotificationObserver implements EventHan
 	
 	protected Blackjack getGame() {
 		return this.game;
+	}
+	
+	public double getWager() {
+		return this.wager;
 	}
 }
