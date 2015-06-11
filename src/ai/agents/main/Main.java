@@ -14,7 +14,12 @@ import ai.agents.BasicStrategyStandSoftAgent;
 import ai.agents.HighLowAgent;
 import ai.agents.HitUntilAgent;
 import ai.agents.LearningAgent;
+import ai.agents.PredicateAgent;
 import ai.agents.ReflexAgent;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 80ba55dbf7f554733973821d521a114cbda5675a
 import ai.agents.SaveAgent;
 import ai.agents.WallHackAgent;
 import ai.agents.main.GameLog.Level;
@@ -40,6 +45,7 @@ public class Main extends Thread {
 	}
 
 	private static void testAgents() {
+<<<<<<< HEAD
 		final int ROUNDS = 1;		
 		/*
 		Main[] agents = {
@@ -64,10 +70,13 @@ public class Main extends Thread {
 				new Main(new HitUntilAgent(20), ROUNDS, Level.ERROR) };
 			*/	 
 		//runAgentsInThread(agents);
+=======
+		final int ROUNDS = 100;
+>>>>>>> 80ba55dbf7f554733973821d521a114cbda5675a
 
 		BaseAgent[] agents = {
 				new SaveAgent(), new AlwaysStandAgent(), new BasicStrategyStandSoftAgent(),
-				new BasicStrategyStandHardAgent(), new WallHackAgent() };
+				new BasicStrategyStandHardAgent(), new WallHackAgent(), new PredicateAgent() };
 		new Main(Arrays.asList(agents), ROUNDS).run();
 	}
 
