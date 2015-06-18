@@ -94,24 +94,20 @@ public class PredicateAgent extends BaseAgent {
 //		System.out.println("dlc | dmc: " + dealerlowCard.or(dealerMediumCard).test(hand));
 		if( splitPossible.and(dealerlowCard.and(easlyBusted)).test(hand) )
 		{
-			System.out.println("Split");
 			return Move.SPLIT;
 		}
 		if( surrenderPossible.and(dealerHighCard.and(easlyBusted.and(highChance.negate()))).test(hand) )
 		{
-			System.out.println("Surrender");
 			return Move.SURRENDER;
 		}
 		// (dlc | dmc) & sth & hc
 		if( doubleDownPossible.and((dealerlowCard.or(dealerMediumCard)).and(saveToHit.and(highChance))).test(hand) )
 		{
-			System.out.println("Double Down");
 			return Move.DOUBLE;
 		}
 		// sth | (!eb & hc) | (idh & hc)
 		if( hitPossible.and(saveToHit.or(easlyBusted.negate().and(mediumChance)).or(isDealerHigher.and(mediumChance))).test(hand) )
 		{
-			System.out.println("Hit");
 			return Move.HIT;
 		}
 		// Default
