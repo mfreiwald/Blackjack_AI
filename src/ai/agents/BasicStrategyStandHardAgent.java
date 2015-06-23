@@ -20,6 +20,11 @@ public class BasicStrategyStandHardAgent extends BaseAgent {
 		int playerValue = hand.getValue();
 		int dealerValue = hand.getDealerValue();
 
+		if (hand.isSplitAllowed() && playerValue != 10 && playerValue != 20) {
+			BasicStrategySplitAgent splitAgent = new BasicStrategySplitAgent();
+			return splitAgent.playTurn(hand);
+		}
+
 		if (playerValue < 9) {
 			return Move.HIT;
 		} else if (playerValue > 16) {
@@ -61,39 +66,6 @@ public class BasicStrategyStandHardAgent extends BaseAgent {
 
 		}
 		throw new IllegalArgumentException("undefined next move, current playerValue: " + playerValue + " - dealerValue: " + hand.getDealerValue());
-	}
-
-	/**
-	 * Returns the Move passed by <code>'alternativeMove'</code> if the dealers' hand value is
-	 * between lowerBound and upperBound, else he will return the Move passed by <code>'move'</code>
-	 *
-	 * @param hand
-	 *            The dealers' hand
-	 * @param lowerBound
-	 *            The lower bound of dealers' hand value to perform the alternative move
-	 * @param upperBound
-	 *            The upper bound of dealers' hand value to perform the alternative move
-	 * @param move
-	 *            The move which shall be returned, this move should always be allowed!
-	 * @param alternativeMove
-	 *            The move which shall be returned if the dealers' hand value is between lower and
-	 *            upper Bound
-	 * @return Move <code>'alternativeMove'</code> if dealers' hand value is between lowerBound and
-	 *         upperBound and allowed, else the Move passed by 'move'
-	 */
-	private Move makeMove(Hand hand, int lowerBound, int upperBound, Move move, Move alternativeMove) {
-		int dealerValue = hand.getDealerValue();
-		if (dealerValue < lowerBound) {
-			return move;
-		} else if (dealerValue > upperBound) {
-			return move;
-		} else {
-			if (hand.isMoveAllowed(alternativeMove)) {
-				return alternativeMove;
-			} else {
-				return move;
-			}
-		}
 	}
 
 	@Override
