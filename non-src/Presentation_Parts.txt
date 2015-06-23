@@ -1,0 +1,6 @@
+Andrea: Overview (Wie geht Blackjack? welche Züge gibts? Geschichte)
+Daja: Hard Soft
+Daniel: AI Relevance, Agents
+Daja: Features
+Michi, Matthias: System Design Architecture
+Andi: Implementation
