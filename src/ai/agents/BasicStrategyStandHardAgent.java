@@ -4,8 +4,8 @@ import garrettsmith.blackjack.Hand;
 import garrettsmith.blackjack.Move;
 
 /**
- * This agent acts like a table agent. <br>
- * He uses the a basic blackjack strategy. The agent will stand hard.
+ * Implementation for the moves of BasicStrategyAgent if he has a hard hand (no Ace).<br>
+ * Do not use this agent as a standalone variant.
  *
  * @author amayer
  */
@@ -19,11 +19,6 @@ public class BasicStrategyStandHardAgent extends BaseAgent {
 	public Move playTurn(Hand hand) {
 		int playerValue = hand.getValue();
 		int dealerValue = hand.getDealerValue();
-
-		if (hand.isSplitAllowed() && playerValue != 10 && playerValue != 20) {
-			BasicStrategySplitAgent splitAgent = new BasicStrategySplitAgent();
-			return splitAgent.playTurn(hand);
-		}
 
 		if (playerValue < 9) {
 			return Move.HIT;
@@ -43,7 +38,7 @@ public class BasicStrategyStandHardAgent extends BaseAgent {
 
 				// hit or Stand
 			case 12:
-				return makeMove(hand, 5, 6, Move.HIT, Move.STAND);
+				return makeMove(hand, 4, 6, Move.HIT, Move.STAND);
 			case 13:
 			case 14:
 				return makeMove(hand, 2, 6, Move.STAND, Move.DOUBLE);

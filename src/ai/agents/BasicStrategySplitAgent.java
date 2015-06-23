@@ -3,6 +3,12 @@ package ai.agents;
 import garrettsmith.blackjack.Hand;
 import garrettsmith.blackjack.Move;
 
+/**
+ * Implementation for the moves of BasicStrategyAgent if he is able to split cards.<br>
+ * Do not use this agent as a standalone variant.
+ * 
+ * @author amayer
+ */
 public class BasicStrategySplitAgent extends BaseAgent {
 
 	public BasicStrategySplitAgent() {
