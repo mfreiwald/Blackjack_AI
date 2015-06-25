@@ -10,7 +10,14 @@ import java.util.List;
 import ai.agents.AlwaysStandAgent;
 import ai.agents.BaseAgent;
 import ai.agents.BasicStrategyAgent;
+import ai.agents.BasicStrategyStandHardAgent;
+import ai.agents.BasicStrategyStandSoftAgent;
+import ai.agents.DealerLearningAgent;
+import ai.agents.HighLowAgent;
+import ai.agents.HitUntilAgent;
+import ai.agents.LearningAgent;
 import ai.agents.PredicateAgent;
+import ai.agents.ReflexAgent;
 import ai.agents.SaveAgent;
 import ai.agents.WallHackAgent;
 import ai.agents.main.GameLog.Level;
@@ -24,6 +31,16 @@ public class Main extends Thread {
 
 	public static void main(String[] args) throws InterruptedException {
 		testAgents();
+	}
+
+
+	private static void testAgent(BaseAgent agents) throws InterruptedException {
+		Main cca = new Main(Arrays.asList(new BaseAgent[]{agents}), 10000);
+		cca.run();
+		for(BaseAgent agent: cca.agents) {
+			System.out.println(agent.name + " purse: " + agent.getPurse());
+			agent.printStats();
+		}
 	}
 
 	private static void testAgents() {

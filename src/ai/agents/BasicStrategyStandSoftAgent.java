@@ -19,7 +19,7 @@ public class BasicStrategyStandSoftAgent extends BaseAgent {
 	public Move playTurn(Hand hand) {
 		int playerValue = hand.getValue();
 
-		if (playerValue > 8) {
+		if (playerValue > 8 || playerValue < 3) {
 			return Move.STAND;
 		}
 
