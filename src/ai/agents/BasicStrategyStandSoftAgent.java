@@ -19,6 +19,10 @@ public class BasicStrategyStandSoftAgent extends BaseAgent {
 	public Move playTurn(Hand hand) {
 		int playerValue = hand.getValue();
 
+		if (playerValue > 8) {
+			return Move.STAND;
+		}
+
 		switch (playerValue) {
 			case 3:
 			case 4:
@@ -38,10 +42,6 @@ public class BasicStrategyStandSoftAgent extends BaseAgent {
 				} else {
 					return makeMove(hand, 3, 6, Move.STAND, Move.DOUBLE);
 				}
-
-			case 9:
-			case 10:
-				return Move.STAND;
 		}
 		throw new IllegalArgumentException("undefined next move, current playerValue: " + playerValue + " - dealerValue: " + hand.getDealerValue());
 	}

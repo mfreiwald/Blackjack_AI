@@ -9,13 +9,8 @@ import java.util.List;
 
 import ai.agents.AlwaysStandAgent;
 import ai.agents.BaseAgent;
-import ai.agents.BasicStrategyStandHardAgent;
-import ai.agents.BasicStrategyStandSoftAgent;
-import ai.agents.HighLowAgent;
-import ai.agents.HitUntilAgent;
-import ai.agents.LearningAgent;
+import ai.agents.BasicStrategyAgent;
 import ai.agents.PredicateAgent;
-import ai.agents.ReflexAgent;
 import ai.agents.SaveAgent;
 import ai.agents.WallHackAgent;
 import ai.agents.main.GameLog.Level;
@@ -31,30 +26,20 @@ public class Main extends Thread {
 		testAgents();
 	}
 
-	private static void testAgent() throws InterruptedException {
-		Main cca = new Main(Arrays.asList(new BaseAgent[]{new WallHackAgent()}), 1000000);
-		cca.run();
-		for(BaseAgent agent: cca.agents) {
-			System.out.println(agent.name + " purse: " + agent.getPurse());
-			agent.printStats();
-		}
-	}
-
 	private static void testAgents() {
 		final int ROUNDS = 100;
 
 		BaseAgent[] agents = {
-				new SaveAgent(), new AlwaysStandAgent(), new BasicStrategyStandSoftAgent(),
-				new BasicStrategyStandHardAgent(), new WallHackAgent(), new PredicateAgent() };
+				new SaveAgent(), new AlwaysStandAgent(), new BasicStrategyAgent(),
+				new WallHackAgent(), new PredicateAgent()};
 		new Main(Arrays.asList(agents), ROUNDS).run();
 	}
-
 
 	Main(List<BaseAgent> agents, int rounds, Level level) {
 		this.agents = agents;
 		this.ROUNDS = rounds;
 		GameLog.level = level;
-		for(BaseAgent agent : this.agents) {
+		for (BaseAgent agent : this.agents) {
 			agent.setGame(blackjack);
 		}
 	}
@@ -73,12 +58,11 @@ public class Main extends Thread {
 		roundsPlayed++;
 		GameLog.println("================ New Game (" + roundsPlayed
 				+ ") ======================");
-		for(BaseAgent agent : agents) {
+		for (BaseAgent agent : agents) {
 			agent.newGame();
 		}
 		List<EventHandler> handlers = new ArrayList<EventHandler>(agents);
 		blackjack.playGame(handlers);
-
 
 		GameLog.println("====================================================");
 		GameLog.println();
