@@ -4,8 +4,8 @@ import garrettsmith.blackjack.Hand;
 import garrettsmith.blackjack.Move;
 
 /**
- * This agent acts like a table agent. <br>
- * He uses the a basic blackjack strategy. The agent will stand hard.
+ * Implementation for the moves of BasicStrategyAgent if he has a hard hand (no Ace).<br>
+ * Do not use this agent as a standalone variant.
  *
  * @author amayer
  */
@@ -38,7 +38,7 @@ public class BasicStrategyStandHardAgent extends BaseAgent {
 
 				// hit or Stand
 			case 12:
-				return makeMove(hand, 5, 6, Move.HIT, Move.STAND);
+				return makeMove(hand, 4, 6, Move.HIT, Move.STAND);
 			case 13:
 			case 14:
 				return makeMove(hand, 2, 6, Move.STAND, Move.DOUBLE);
@@ -61,39 +61,6 @@ public class BasicStrategyStandHardAgent extends BaseAgent {
 
 		}
 		throw new IllegalArgumentException("undefined next move, current playerValue: " + playerValue + " - dealerValue: " + hand.getDealerValue());
-	}
-
-	/**
-	 * Returns the Move passed by <code>'alternativeMove'</code> if the dealers' hand value is
-	 * between lowerBound and upperBound, else he will return the Move passed by <code>'move'</code>
-	 *
-	 * @param hand
-	 *            The dealers' hand
-	 * @param lowerBound
-	 *            The lower bound of dealers' hand value to perform the alternative move
-	 * @param upperBound
-	 *            The upper bound of dealers' hand value to perform the alternative move
-	 * @param move
-	 *            The move which shall be returned, this move should always be allowed!
-	 * @param alternativeMove
-	 *            The move which shall be returned if the dealers' hand value is between lower and
-	 *            upper Bound
-	 * @return Move <code>'alternativeMove'</code> if dealers' hand value is between lowerBound and
-	 *         upperBound and allowed, else the Move passed by 'move'
-	 */
-	private Move makeMove(Hand hand, int lowerBound, int upperBound, Move move, Move alternativeMove) {
-		int dealerValue = hand.getDealerValue();
-		if (dealerValue < lowerBound) {
-			return move;
-		} else if (dealerValue > upperBound) {
-			return move;
-		} else {
-			if (hand.isMoveAllowed(alternativeMove)) {
-				return alternativeMove;
-			} else {
-				return move;
-			}
-		}
 	}
 
 	@Override

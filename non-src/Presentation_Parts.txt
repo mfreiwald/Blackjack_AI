@@ -1,0 +1,9 @@
+Andrea: Overview (Wie geht Blackjack? welche Züge gibts? Geschichte)
+
+Daja: Hard Soft - Mögliche Blackjack Techniken
+
+Daniel: AI Relevance, Agents - Wie funktionieren bzw. was machen unsere Agents?
+
+Michi, Matthias: System Design Architecture - Grundbausteine der Implementierung, BaseAgent Implementierung
+
+Andi: Implementation - Konkrete Agent Implementierung anhand 1 oder 2 Agents & Programausführung
