@@ -54,11 +54,11 @@ _#printPoints(hand: Hand)_
 -printDealerCard(hand: Hand)
 #printDealerCardIfNeeded(hand: Hand)
 #printPlayerCards(hand: Hand)
-printStats()
-getPurse()
-getWins()
-getLose()
-getWager()
++printStats()
++getPurse() : int
++getWins() : int
++getLose() : int
++getWager() : int
 group=2</panel_attributes>
     <additional_attributes/>
   </element>
