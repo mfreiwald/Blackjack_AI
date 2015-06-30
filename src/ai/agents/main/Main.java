@@ -30,12 +30,58 @@ public class Main extends Thread {
 	private Blackjack blackjack = new Blackjack();
 
 	public static void main(String[] args) throws InterruptedException {
-		testAgents();
+		if(args.length > 0) {
+			final String input = args[0];
+			BaseAgent agent = null;
+			// AlwaysStandAgent 	= 0
+			// BasicStrategyAgent 	= 1
+			// HighLowAgent			= 2
+			// HitUntilAgent		= 3 (Param!)
+			// LearningAgent		= 4
+			// PredicateAgent		= 5
+			// ReflexAgent			= 6
+			// SaveAgent			= 7
+			// WallHackAgent		= 8
+			switch(input) {
+			case "0": agent = new AlwaysStandAgent(); break;
+			case "1": agent = new BasicStrategyAgent(); break;
+			case "2": agent = new HighLowAgent(); break;
+			case "3": 
+				int x = 17;
+				try {
+					x = Integer.parseInt(args[1]);
+				} catch (Exception e) {
+					
+				}
+				agent = new HitUntilAgent(x); 
+				break;
+			case "4": agent = new LearningAgent(); break;
+			case "5": agent = new PredicateAgent(); break;
+			case "6": agent = new ReflexAgent(); break;
+			case "7": agent = new SaveAgent(); break;
+			case "8": agent = new WallHackAgent(); break;
+			default: agent = new AlwaysStandAgent(); break;
+			}
+			
+			testAgent(agent);
+		
+		} else {
+			System.out.println("Agents: ");
+			System.out.println("AlwaysStandAgent\t= 0");
+			System.out.println("BasicStrategyAgent\t= 1");
+			System.out.println("HighLowAgent\t\t= 2");
+			System.out.println("HitUntilAgent\t\t= 3 & upper bound");
+			System.out.println("LearningAgent\t\t= 4");
+			System.out.println("PredicateAgent\t\t= 5");
+			System.out.println("ReflexAgent\t\t= 6");
+			System.out.println("SaveAgent\t\t= 7");
+			System.out.println("WallHackAgent\t\t= 8");
+		}
 	}
 
 
 	private static void testAgent(BaseAgent agents) throws InterruptedException {
-		Main cca = new Main(Arrays.asList(new BaseAgent[]{agents}), 10000);
+		Main cca = new Main(Arrays.asList(new BaseAgent[]{agents}), 3);
 		cca.run();
 		for(BaseAgent agent: cca.agents) {
 			System.out.println(agent.name + " purse: " + agent.getPurse());
