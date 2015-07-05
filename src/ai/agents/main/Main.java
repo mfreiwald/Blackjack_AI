@@ -3,6 +3,7 @@ package ai.agents.main;
 import garrettsmith.blackjack.Blackjack;
 import garrettsmith.blackjack.EventHandler;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -30,8 +31,21 @@ public class Main extends Thread {
 	private Blackjack blackjack = new Blackjack();
 
 	public static void main(String[] args) throws InterruptedException {
-		if(args.length > 0) {
-			final String input = args[0];
+		
+		while(true) {
+			System.out.println("Agents: ");
+			System.out.println("AlwaysStandAgent\t= 0");
+			System.out.println("BasicStrategyAgent\t= 1");
+			System.out.println("HighLowAgent\t\t= 2");
+			System.out.println("HitUntilAgent\t\t= 3 & upper bound");
+			System.out.println("LearningAgent\t\t= 4");
+			System.out.println("PredicateAgent\t\t= 5");
+			System.out.println("ReflexAgent\t\t= 6");
+			System.out.println("SaveAgent\t\t= 7");
+			System.out.println("WallHackAgent\t\t= 8");
+		
+			final String input = System.console().readLine("Choose Agent: ");
+
 			BaseAgent agent = null;
 			// AlwaysStandAgent 	= 0
 			// BasicStrategyAgent 	= 1
@@ -49,7 +63,7 @@ public class Main extends Thread {
 			case "3": 
 				int x = 17;
 				try {
-					x = Integer.parseInt(args[1]);
+					x = Integer.parseInt(System.console().readLine("Hit until? "));
 				} catch (Exception e) {
 					
 				}
@@ -65,18 +79,11 @@ public class Main extends Thread {
 			
 			testAgent(agent);
 		
-		} else {
-			System.out.println("Agents: ");
-			System.out.println("AlwaysStandAgent\t= 0");
-			System.out.println("BasicStrategyAgent\t= 1");
-			System.out.println("HighLowAgent\t\t= 2");
-			System.out.println("HitUntilAgent\t\t= 3 & upper bound");
-			System.out.println("LearningAgent\t\t= 4");
-			System.out.println("PredicateAgent\t\t= 5");
-			System.out.println("ReflexAgent\t\t= 6");
-			System.out.println("SaveAgent\t\t= 7");
-			System.out.println("WallHackAgent\t\t= 8");
-		}
+			System.console().readLine();
+			System.out.print(String.format("\033[2J"));
+
+		} 
+		
 	}
 
 
